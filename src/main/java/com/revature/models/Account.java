@@ -7,7 +7,7 @@ public class Account {
 	private int id;
 	// Account has a User
 	
-	private Account() {
+	public Account() {
 		balance = 0.00;
 	}	
 	
