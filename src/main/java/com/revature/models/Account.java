@@ -9,6 +9,8 @@ public class Account {
 	
 	public Account() {
 		balance = 0.00;
+		statusOfAccount = true;
+		// set id for account too
 	}	
 	
 	// setter for balance
@@ -52,7 +54,7 @@ public class Account {
 	}
 	
 	public double transfer(double amount, String accountName) {
-		System.out.println("You made a transfer " + accountName);
+		System.out.println("You made a transfer to " + accountName + ".");
 		return this.balance - amount;
 	}
 
