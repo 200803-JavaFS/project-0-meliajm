@@ -8,6 +8,7 @@ public class Account {
 	// Account has a User
 	
 	public Account() {
+		super();
 		balance = 0.00;
 		statusOfAccount = true;
 		// set id for account too

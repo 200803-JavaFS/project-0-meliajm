@@ -7,10 +7,13 @@ do we need to unit test our setters and getters?
 
 
 to do:
-add validation to accounts and users
-*over-withdraw
-*no negative numbers for amounts to be deposited, transferred, withdraw
-*no empty Strings for username or password, min char length of password
+[] connect scanner to models -> create new User and new Accounts
+[] associate User and Account
+
+[x]add validation to accounts and users
+[x]*over-withdraw
+[x]*no negative numbers for amounts to be deposited, transferred, withdraw
+[x]*no empty Strings for username or password, min char length of password
 
 
 build menu (user interface)
