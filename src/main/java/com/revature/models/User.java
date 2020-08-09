@@ -19,7 +19,10 @@ public class User {
 	}
 	
 	public void setUsername(String username) {
-		this.username = username;
+		if (username.equals("")) {} 
+		else {			
+			this.username = username;
+		}
 	}
 
 	public static int getType() {
@@ -27,7 +30,9 @@ public class User {
 	}
 
 	public void setType(int type) {
-		User.type = type;
+		if (type==1 || type==2 || type==3) {			
+			User.type = type;
+		}
 	}
 
 	public String getPassword() {
@@ -35,7 +40,10 @@ public class User {
 	}
 
 	public void setPassword(String password) {
-		this.password = password;
+		if (password.equals("")) {} 
+		else {			
+			this.password = password;
+		}
 	}
 	
 //	int userEnum, this will be 1 for basic

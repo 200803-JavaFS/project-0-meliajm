@@ -32,7 +32,6 @@ public class s {
         	System.out.println("What is your password?");
 //        	scan.nextLine();
         	password = scan.nextLine();
-
         } else if (typeOfUser==4) {
         	System.out.println("Goodbye.");
 //        	something else happens here
