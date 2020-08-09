@@ -13,12 +13,12 @@ public class Account {
 		// set id for account too
 	}	
 	
-	// setter for balance
+	// getter for balance
 	public double getBalance() {
 		return balance;
 	}
 
-	// getter for balance
+	//  setter for balance
 //	public void setBalance(double balance) {
 //		this.balance = balance;
 //	}
@@ -29,33 +29,56 @@ public class Account {
 	
 	// only access for employees need to add  so that only employee can do that
 	public void setStatusOfAccount(boolean statusOfAccount) {
-		if (User.getType() == 2 || User.getType() == 3) {			
+		if (User.getType() == 2 || User.getType() == 3) {
+			// need extra validation here? for True or False
 			this.statusOfAccount = statusOfAccount;
 			System.out.println("The status of your account is " + this.statusOfAccount);
 		} 
 	}
 	
+	// admin can cancel account
 	public void cancelAccount(boolean statusOfAccount) {
-		if (User.getType() == 3) {			
+		if (User.getType() == 3) {	
+			// need to delete from database
 			System.out.println("Your account has been deleted");
 		} 
 	}
-	// admin can cancel account
 	
 	public double deposit(double amount) {
-		System.out.println("You made a deposit.");
-		// add to balance
-		return this.balance + amount;
+		if (amount <= 0) {
+			System.out.println("You must deposit a positive value.");
+			return this.balance;
+		} else {
+			// add to balance
+			System.out.println("You made a deposit.");
+			return this.balance + amount;
+		}
 	}
 	
 	public double withdraw(double amount) {
-		System.out.println("You made a withdraw");
-		return this.balance - amount;
+		if (amount <= 0) {
+			System.out.println("You must withdraw a positive value.");
+			return this.balance;
+		} else if (this.balance - amount >= 0) {			
+			System.out.println("You made a withdraw.");
+			return this.balance - amount;
+		} else {
+			System.out.println("You cannot over-withdraw from your account.");			
+			return this.balance;
+		}
 	}
 	
 	public double transfer(double amount, String accountName) {
-		System.out.println("You made a transfer to " + accountName + ".");
-		return this.balance - amount;
+		if (amount <= 0) {
+			System.out.println("You can only transfer a positive amount.");
+			return this.balance;
+		} else if (this.balance - amount >= 0) {			
+			System.out.println("You made a transfer to " + accountName + ".");
+			return this.balance - amount;
+		} else {
+			System.out.println("You cannot transfer that amount based on the current balance of your account.");
+			return this.balance;
+		}
 	}
 
 	public int getId() {
