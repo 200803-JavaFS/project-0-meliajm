@@ -1,8 +1,8 @@
 package com.revature.models;
 
-public class User {
+public class UserTests {
 
-	public User() {
+	public UserTests() {
 		// TODO Auto-generated constructor stub
 	}
 

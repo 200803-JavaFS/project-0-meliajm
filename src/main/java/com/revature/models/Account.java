@@ -12,7 +12,11 @@ public class Account {
 		balance = 0.00;
 		statusOfAccount = true;
 		// set id for account too
-	}	
+	}
+	
+//	public Account() {
+//		super();
+//	}
 	
 	// getter for balance
 	public double getBalance() {
