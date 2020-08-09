@@ -24,9 +24,9 @@ public class Account {
 	}
 
 	//  setter for balance
-//	public void setBalance(double balance) {
-//		this.balance = balance;
-//	}
+	public void setBalance(double balance) {
+		this.balance = balance;
+	}
 	
 	public boolean getStatusOfAccount() {
 		return statusOfAccount;

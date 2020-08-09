@@ -34,6 +34,7 @@ public class AccountTests {
 		withd = 100.00;
 		tr = 200.00;
 		accNam = "Bank of Dog";
+		a.setBalance(200.00);
 	}
 	
 	@After
@@ -52,7 +53,7 @@ public class AccountTests {
 	public void testDeposit() {
 		System.out.println("Testing deposit");
 		result = a.deposit(depos);
-		assertTrue(result == 500.00);		
+		assertTrue(result == 700.00);		
 	}
 	
 	// test withdraw
@@ -60,7 +61,7 @@ public class AccountTests {
 	public void testWithdraw() {
 		System.out.println("Testing withdraw");
 		result = a.withdraw(withd);
-		assertTrue(result == -100.00);		
+		assertTrue(result == 100.00);		
 	}
 	
 	// test transfer
@@ -68,7 +69,7 @@ public class AccountTests {
 	public void testTransfer() {
 		System.out.println("Testing transfer");
 		result = a.transfer(tr, accNam);
-		assertTrue(result == -200.00);
+		assertTrue(result == 0.00);
 	}
 	
 	// test setStatusOfAccount - not sure if i need this
