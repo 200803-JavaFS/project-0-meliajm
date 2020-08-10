@@ -2,6 +2,7 @@ package com.revature;
 
 import java.util.*;
 
+import com.revature.models.Account;
 import com.revature.models.User;
 
 public class s {
@@ -50,6 +51,11 @@ public class s {
     	
     	if (findOrCreateAccount == 1) {
     		System.out.println("Creating account...");
+    		Account a  = new Account();
+    		// account needs to be associated with a user
+    		// account must be approved by employee or admin
+    		// so initialize account, then later admin/employ can approve
+    		// by changing status of account
     	} else if (findOrCreateAccount == 2) {
     		System.out.println("Finding account...");
     	} else if (findOrCreateAccount==3) {

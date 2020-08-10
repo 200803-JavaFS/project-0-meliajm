@@ -6,10 +6,12 @@ how does a user login?
 do we need to unit test our setters and getters?
 
 
+
 to do:
-[] connect scanner to models -> create new User and new Accounts
+[] connect scanner to Account
 [] associate User and Account
 
+[x] connect scanner to User
 [x] test other conditions for Account included in if else
 [x]add validation to accounts and users
 [x]*over-withdraw
