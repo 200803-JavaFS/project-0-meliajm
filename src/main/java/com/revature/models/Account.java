@@ -49,6 +49,18 @@ public class Account {
 		} 
 	}
 	
+//	public double deposit(double a) {
+//		return this.balance;
+//	}
+//	
+//	public double withdraw(double a) {
+//		return this.balance;
+//	}
+//	
+//	public double transfer(double a, String s) {
+//		return this.balance;
+//	}
+	
 	public double deposit(double amount) {
 		if (amount <= 0) {
 			System.out.println("You must deposit a positive value.");
