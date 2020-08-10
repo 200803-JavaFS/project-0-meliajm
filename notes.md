@@ -9,8 +9,8 @@ do we need to unit test our setters and getters?
 to do:
 [] connect scanner to models -> create new User and new Accounts
 [] associate User and Account
-[] test other conditions for Account included in if else
 
+[x] test other conditions for Account included in if else
 [x]add validation to accounts and users
 [x]*over-withdraw
 [x]*no negative numbers for amounts to be deposited, transferred, withdraw

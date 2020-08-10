@@ -2,6 +2,8 @@ package com.revature;
 
 import java.util.*;
 
+import com.revature.models.User;
+
 public class s {
 
     public static void main(String[] args) {
@@ -36,6 +38,8 @@ public class s {
         	System.out.println("Goodbye.");
 //        	something else happens here
 //        	i'd like to start back at the very beginning
+        } else {
+        	System.out.println("Not sure what you mean.");
         }
         
         System.out.println("What would you like to do?");
@@ -53,7 +57,14 @@ public class s {
     	}
         
         scan.close();
-       
+        
+        User u = new User(username, password, typeOfUser);
+        
+        System.out.println(u);
+        System.out.println(u.getUsername());
+        System.out.println(u.getPassword());
+        System.out.println(u.getType());
+        
         System.out.println("Username: " + username);
         System.out.println("Password: " + password);
 

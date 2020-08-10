@@ -8,10 +8,11 @@ public class User {
 	private static int type; //1 is basic, 2 employee, 3 is admin
 	// User has many Accounts, or can have more than one
 	
-	public User(String username, String password) {
+	public User(String username, String password, int type) {
 		super();
 		this.username = username;
 		this.setPassword(password);
+		this.type = type;
 	}
 	
 	public String getUsername() {
