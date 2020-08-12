@@ -4,3 +4,8 @@
 2020-08-11 11:10:35 INFO  Driver:11 - The application has started
 2020-08-11 11:10:35 ERROR Driver:16 - Oh no we encountered an error
 2020-08-11 11:10:35 INFO  Driver:18 - the end of app
+2020-08-12 13:23:22 INFO  Driver:16 - The application has started
+2020-08-12 13:23:22 INFO  AccountController:17 - logging in account controller
+2020-08-12 13:23:22 INFO  AccountDAO:15 - I am in the DAO getting account number 1
+2020-08-12 13:23:22 INFO  Driver:26 - we have found acount: Account [balance=" + balance + ", type=" + type + "]
+2020-08-12 13:23:22 INFO  Driver:27 - the end of app
