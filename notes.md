@@ -10,6 +10,8 @@ do we need to unit test our setters and getters?
 to do:
 [] connect scanner to Account
 [] associate User and Account
+[] service layers for Accounts and Users
+[] logging with log4j
 
 [x] connect scanner to User
 [x] test other conditions for Account included in if else

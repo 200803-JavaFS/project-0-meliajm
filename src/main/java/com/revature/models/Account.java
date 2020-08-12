@@ -4,20 +4,41 @@ public class Account {
 	
 	private double balance;
 	private boolean statusOfAccount;
+	private String type;
 	private int id;
 	// Account has a User
 	
-	public Account() {
+	public Account(double balance, String type) {
 		super();
-		balance = 0.00;
-		statusOfAccount = true;
-		// set id for account too
+		this.balance = balance;
+		this.type = type;
+		this.statusOfAccount = true;
 	}
 	
+	public Account() {
+		super();
+	}
+	
+	
+//	public Account() {
+//		super();
+//		balance = 0.00;
+//		statusOfAccount = true;
+//		// set id for account too
+//	}
+//	
 //	public Account() {
 //		super();
 //	}
 	
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
 	// getter for balance
 	public double getBalance() {
 		return balance;
@@ -109,6 +130,11 @@ public class Account {
 	public void approveAccount() {
 		// this is basically where the constructor should go
 		// i think
+	}
+	
+	@Override
+	public String toString() {
+		return "Account [balance=\" + balance + \", type=\" + type + \"]";
 	}
 
 }
