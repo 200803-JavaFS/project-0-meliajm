@@ -8,9 +8,10 @@ public class Account implements Serializable {
 	
 	private int accountID;
 	private double balance;
-	private boolean statusOfAccount;
+	private int statusOfAccount; // changed from boolean to int
 	private String type;
-	private User userID;
+	private int userID;
+	private String name;
 	
 	// Account has a User
 	
@@ -18,12 +19,14 @@ public class Account implements Serializable {
 		super();
 	}
 	// constructor for homebase?
-	public Account(String type) {
+	// all getters and setters?
+	public Account(String type, User user, String name) {
 		super();
 		this.balance = 0.00;
-		this.statusOfAccount = true;
+		this.statusOfAccount = 1;
 		this.type = type;
-		this.userID = userID
+//		this.userID = user.getUserID();
+		this.name = name;
 	}
 	
 	
@@ -40,6 +43,12 @@ public class Account implements Serializable {
 //		super();
 //	}
 	
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
 	public String getType() {
 		return type;
 	}
@@ -58,13 +67,13 @@ public class Account implements Serializable {
 		this.balance = balance;
 	}
 	
-	public boolean getStatusOfAccount() {
+	public int getStatusOfAccount() {
 		return statusOfAccount;
 	}
 	
 	// only access for employees need to add  so that only employee can do that
-	public void setStatusOfAccount(boolean statusOfAccount) {
-		if (User.getType() == 2 || User.getType() == 3) {
+	public void setStatusOfAccount(int statusOfAccount, User u) {
+		if (u.getType() == 2 || u.getType() == 3) {
 			// need extra validation here? for True or False
 			this.statusOfAccount = statusOfAccount;
 			System.out.println("The status of your account is " + this.statusOfAccount);
@@ -72,8 +81,8 @@ public class Account implements Serializable {
 	}
 	
 	// admin can cancel account
-	public void cancelAccount(boolean statusOfAccount) {
-		if (User.getType() == 3) {	
+	public void cancelAccount(boolean statusOfAccount, User u) {
+		if (u.getType() == 3) {	
 			// need to delete from database
 			System.out.println("Your account has been deleted");
 		} 
@@ -106,7 +115,6 @@ public class Account implements Serializable {
 		// i think
 		// no this is where employee and admin can modify account status
 	}
-	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -115,12 +123,11 @@ public class Account implements Serializable {
 		long temp;
 		temp = Double.doubleToLongBits(balance);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
-		result = prime * result + (statusOfAccount ? 1231 : 1237);
+		result = prime * result + statusOfAccount;
 		result = prime * result + ((type == null) ? 0 : type.hashCode());
-		result = prime * result + ((userID == null) ? 0 : userID.hashCode());
+		result = prime * result + userID;
 		return result;
 	}
-
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -141,17 +148,18 @@ public class Account implements Serializable {
 				return false;
 		} else if (!type.equals(other.type))
 			return false;
-		if (userID == null) {
-			if (other.userID != null)
-				return false;
-		} else if (!userID.equals(other.userID))
+		if (userID != other.userID)
 			return false;
 		return true;
 	}
-
 	@Override
 	public String toString() {
-		return "Account [balance=\" + balance + \", type=\" + type + \"]";
+		return "Account [accountID=" + accountID + ", balance=" + balance + ", statusOfAccount=" + statusOfAccount
+				+ ", type=" + type + ", userID=" + userID + "]";
 	}
+	
+	
+	
+	
 
 }

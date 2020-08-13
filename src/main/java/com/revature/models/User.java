@@ -3,6 +3,8 @@ package com.revature.models;
 import java.io.Serializable;
 
 public class User implements Serializable {
+	// all getters and setters?
+
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -68,6 +70,16 @@ public class User implements Serializable {
 		else {			
 			this.password = password;
 		}
+	}
+	
+	
+
+	public int getUserID() {
+		return userID;
+	}
+
+	public void setUserID(int userID) {
+		this.userID = userID;
 	}
 
 	@Override
