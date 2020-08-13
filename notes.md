@@ -8,8 +8,9 @@ do we need to unit test our setters and getters?
 
 
 to do:
-[] connect scanner to Account
-[] associate User and Account
+[] try, catch block for invalid inputs in menu like strings when it should be int
+[?] connect scanner to Account
+[?] associate User and Account
 [] service layers for Accounts and Users
 [] logging with log4j
 

@@ -82,42 +82,7 @@ public class Account {
 //		return this.balance;
 //	}
 	
-	public double deposit(double amount) {
-		if (amount <= 0) {
-			System.out.println("You must deposit a positive value.");
-			return this.balance;
-		} else {
-			// add to balance
-			System.out.println("You made a deposit.");
-			return this.balance + amount;
-		}
-	}
-	
-	public double withdraw(double amount) {
-		if (amount <= 0) {
-			System.out.println("You must withdraw a positive value.");
-			return this.balance;
-		} else if (this.balance - amount >= 0) {			
-			System.out.println("You made a withdraw.");
-			return this.balance - amount;
-		} else {
-			System.out.println("You cannot over-withdraw from your account.");			
-			return this.balance;
-		}
-	}
-	
-	public double transfer(double amount, String accountName) {
-		if (amount <= 0) {
-			System.out.println("You can only transfer a positive amount.");
-			return this.balance;
-		} else if (this.balance - amount >= 0) {			
-			System.out.println("You made a transfer to " + accountName + ".");
-			return this.balance - amount;
-		} else {
-			System.out.println("You cannot transfer that amount based on the current balance of your account.");
-			return this.balance;
-		}
-	}
+
 
 	public int getId() {
 		return id;
