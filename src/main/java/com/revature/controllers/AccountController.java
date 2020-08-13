@@ -8,7 +8,7 @@ import com.revature.models.Account;
 //import com.revature.repos.AccountDAO;
 
 public class AccountController {
-	
+	// singleton
 	private static final Logger log = LogManager.getLogger(AccountController.class);
 	
 //	private AccountDAO dao = new AccountDAO();

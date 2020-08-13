@@ -1,23 +1,32 @@
 package com.revature.models;
 
-public class Account {
+import java.io.Serializable;
+
+public class Account implements Serializable {
 	
+	private static final long serialVersionIUD = 1L;
+	
+	private int accountID;
 	private double balance;
 	private boolean statusOfAccount;
 	private String type;
-	private int id;
-	// Account has a User
+	private User userID;
 	
-	public Account(String type) {
-		super();
-		this.balance = 0.00;
-		this.type = type;
-		this.statusOfAccount = true;
-	}
+	// Account has a User
 	
 	public Account() {
 		super();
 	}
+	// constructor for homebase?
+	public Account(String type) {
+		super();
+		this.balance = 0.00;
+		this.statusOfAccount = true;
+		this.type = type;
+		this.userID = userID
+	}
+	
+	
 	
 	
 //	public Account() {
@@ -84,19 +93,62 @@ public class Account {
 	
 
 
-	public int getId() {
-		return id;
+	public int getAccountId() {
+		return accountID;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setAccountId(int accountID) {
+		this.accountID = accountID;
 	}
 	
 	public void approveAccount() {
 		// this is basically where the constructor should go
 		// i think
+		// no this is where employee and admin can modify account status
 	}
 	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + accountID;
+		long temp;
+		temp = Double.doubleToLongBits(balance);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + (statusOfAccount ? 1231 : 1237);
+		result = prime * result + ((type == null) ? 0 : type.hashCode());
+		result = prime * result + ((userID == null) ? 0 : userID.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Account other = (Account) obj;
+		if (accountID != other.accountID)
+			return false;
+		if (Double.doubleToLongBits(balance) != Double.doubleToLongBits(other.balance))
+			return false;
+		if (statusOfAccount != other.statusOfAccount)
+			return false;
+		if (type == null) {
+			if (other.type != null)
+				return false;
+		} else if (!type.equals(other.type))
+			return false;
+		if (userID == null) {
+			if (other.userID != null)
+				return false;
+		} else if (!userID.equals(other.userID))
+			return false;
+		return true;
+	}
+
 	@Override
 	public String toString() {
 		return "Account [balance=\" + balance + \", type=\" + type + \"]";
