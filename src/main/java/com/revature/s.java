@@ -8,11 +8,14 @@ import com.revature.models.User;
 public class s {
 
     public static void main(String[] args) {
+    	// put this in try, catch block
     	
     	int typeOfUser;
     	String username = null;
     	String password = null;
     	int findOrCreateAccount;
+    	int checkingOrSavings;
+    	Account a = null;
     	   	
     	System.out.println("Welcome to Bank of Dog!");
 //    	not sure if we have to do sign up too or just login
@@ -51,7 +54,22 @@ public class s {
     	
     	if (findOrCreateAccount == 1) {
     		System.out.println("Creating account...");
-    		Account a  = new Account();
+    		System.out.println("What type of account are you creating?");
+    		System.out.println("1 for checking");
+    		System.out.println("2 for savings");
+    		checkingOrSavings = scan.nextInt();
+    			if (checkingOrSavings == 1) {    				
+    				a  = new Account("Checking");
+    			} else if (checkingOrSavings == 2) {
+    				a  = new Account("Savings");
+    			} else if (checkingOrSavings == 3) {
+    				System.out.println("Goodbye.");    				
+    			} else {
+    				//something here to restart loop
+    				// make each of these methods and nest them?
+    			}
+
+
     		// account needs to be associated with a user
     		// account must be approved by employee or admin
     		// so initialize account, then later admin/employ can approve
@@ -70,6 +88,8 @@ public class s {
         System.out.println(u.getUsername());
         System.out.println(u.getPassword());
         System.out.println(u.getType());
+        
+        System.out.println("Account type: " + a.getType());
         
         System.out.println("Username: " + username);
         System.out.println("Password: " + password);

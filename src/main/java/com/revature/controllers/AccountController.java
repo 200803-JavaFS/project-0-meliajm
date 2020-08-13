@@ -21,7 +21,7 @@ public class AccountController {
 	// make account instance?
 	
 	// account as argument for methods
-	public static double deposit(double amount) {
+	public static double deposit(Account a, double amount) {
 		if (amount <= 0) {
 			System.out.println("You must deposit a positive value.");
 			return a.getBalance();
@@ -32,7 +32,7 @@ public class AccountController {
 		}
 	}
 	
-	public static double withdraw(double amount) {
+	public static double withdraw(Account a, double amount) {
 		if (amount <= 0) {
 			System.out.println("You must withdraw a positive value.");
 			return a.getBalance();
@@ -45,7 +45,7 @@ public class AccountController {
 		}
 	}
 	
-	public static double transfer(double amount, String accountName) {
+	public static double transfer(Account a, double amount, String accountName) {
 		if (amount <= 0) {
 			System.out.println("You can only transfer a positive amount.");
 			return a.getBalance();

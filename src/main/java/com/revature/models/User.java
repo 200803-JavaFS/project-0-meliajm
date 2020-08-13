@@ -7,6 +7,8 @@ public class User {
 	private String password;
 	private static int type; //1 is basic, 2 employee, 3 is admin
 	// User has many Accounts, or can have more than one
+	private String firstName;
+	private String lastName;
 	
 	public User(String username, String password, int type) {
 		super();

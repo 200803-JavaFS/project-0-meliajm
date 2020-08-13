@@ -8,9 +8,9 @@ public class Account {
 	private int id;
 	// Account has a User
 	
-	public Account(double balance, String type) {
+	public Account(String type) {
 		super();
-		this.balance = balance;
+		this.balance = 0.00;
 		this.type = type;
 		this.statusOfAccount = true;
 	}

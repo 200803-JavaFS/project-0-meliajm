@@ -21,9 +21,9 @@ public class Driver {
 //			Log.error("Oh no we encountered an error");
 //		}
 		
-		Account a = ac.findAccountById(1);
+//		Account a = ac.findAccountById(1);
 		
-		log.info("we have found acount: "+a);
+//		log.info("we have found acount: "+a);
 		log.info("the end of app");
 		
 	}
