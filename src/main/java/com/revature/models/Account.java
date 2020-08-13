@@ -4,65 +4,56 @@ import java.io.Serializable;
 
 public class Account implements Serializable {
 	
+	// how are we using this serial? 
 	private static final long serialVersionIUD = 1L;
 	
 	private int accountID;
 	private double balance;
 	private int statusOfAccount; // changed from boolean to int
-	private String type;
-	private int userID;
-	private String name;
-	
-	// Account has a User
-	
+	private String accountType;
+		
 	public Account() {
 		super();
 	}
 	// constructor for homebase?
 	// all getters and setters?
-	public Account(String type, User user, String name) {
+	public Account(int accountID, double balance, int statusOfAccount, String accountType) {
 		super();
-		this.balance = 0.00;
-		this.statusOfAccount = 1;
-		this.type = type;
-//		this.userID = user.getUserID();
-		this.name = name;
+		this.accountID = accountID;
+		this.balance = balance;
+		this.statusOfAccount = statusOfAccount;
+		this.accountType = accountType;		
+	}
+	
+	public Account(double balance, int statusOfAccount, String accountType) {
+		super();
+		this.balance = balance;
+		this.statusOfAccount = statusOfAccount;
+		this.accountType = accountType;		
+	}
+	
+	public int getAccountID() {
+		return accountID;
+	}
+	
+	public void setAccountID(int accountID) {
+		this.accountID = accountID;
 	}
 	
 	
-	
-	
-//	public Account() {
-//		super();
-//		balance = 0.00;
-//		statusOfAccount = true;
-//		// set id for account too
-//	}
-//	
-//	public Account() {
-//		super();
-//	}
-	
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public String getType() {
-		return type;
+	public String getAccountType() {
+		return accountType;
 	}
 
-	public void setType(String type) {
-		this.type = type;
+	public void setAccountType(String accountType) {
+		this.accountType = accountType;
 	}
 
-	// getter for balance
 	public double getBalance() {
 		return balance;
 	}
 
-	//  setter for balance
+	//  admin can set this setter for balance
 	public void setBalance(double balance) {
 		this.balance = balance;
 	}
@@ -76,6 +67,7 @@ public class Account implements Serializable {
 		if (u.getType() == 2 || u.getType() == 3) {
 			// need extra validation here? for True or False
 			this.statusOfAccount = statusOfAccount;
+			
 			System.out.println("The status of your account is " + this.statusOfAccount);
 		} 
 	}
@@ -88,27 +80,7 @@ public class Account implements Serializable {
 		} 
 	}
 	
-//	public double deposit(double a) {
-//		return this.balance;
-//	}
-//	
-//	public double withdraw(double a) {
-//		return this.balance;
-//	}
-//	
-//	public double transfer(double a, String s) {
-//		return this.balance;
-//	}
 	
-
-
-	public int getAccountId() {
-		return accountID;
-	}
-
-	public void setAccountId(int accountID) {
-		this.accountID = accountID;
-	}
 	
 	public void approveAccount() {
 		// this is basically where the constructor should go
@@ -120,12 +92,11 @@ public class Account implements Serializable {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + accountID;
+		result = prime * result + ((accountType == null) ? 0 : accountType.hashCode());
 		long temp;
 		temp = Double.doubleToLongBits(balance);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
 		result = prime * result + statusOfAccount;
-		result = prime * result + ((type == null) ? 0 : type.hashCode());
-		result = prime * result + userID;
 		return result;
 	}
 	@Override
@@ -139,24 +110,26 @@ public class Account implements Serializable {
 		Account other = (Account) obj;
 		if (accountID != other.accountID)
 			return false;
+		if (accountType == null) {
+			if (other.accountType != null)
+				return false;
+		} else if (!accountType.equals(other.accountType))
+			return false;
 		if (Double.doubleToLongBits(balance) != Double.doubleToLongBits(other.balance))
 			return false;
 		if (statusOfAccount != other.statusOfAccount)
-			return false;
-		if (type == null) {
-			if (other.type != null)
-				return false;
-		} else if (!type.equals(other.type))
-			return false;
-		if (userID != other.userID)
 			return false;
 		return true;
 	}
 	@Override
 	public String toString() {
 		return "Account [accountID=" + accountID + ", balance=" + balance + ", statusOfAccount=" + statusOfAccount
-				+ ", type=" + type + ", userID=" + userID + "]";
+				+ ", accountType=" + accountType + "]";
 	}
+	
+	
+	
+	
 	
 	
 	

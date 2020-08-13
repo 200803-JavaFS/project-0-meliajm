@@ -8,17 +8,23 @@ import org.apache.logging.log4j.Logger;
 import com.revature.controllers.AccountController;
 import com.revature.daos.AccountDAO;
 import com.revature.models.Account;
+import com.revature.utils.ConsoleUtil;
 
 public class Driver {
 	
 	private static AccountDAO dao = new AccountDAO();
 	
 	public static void main(String[] args) {
-		List<Account> list = dao.findAll();
 		
-		for (Account a: list) {
-			System.out.println(a);
-		}
+		ConsoleUtil cons = new ConsoleUtil();
+		cons.beginApp();
+//		List<Account> list = dao.findAll();
+//		
+//		for (Account a: list) {
+//			System.out.println(a);
+//		}
+//		
+//		Account a = new Account(0.00, "Savings")
 	}
 	
 //	private static final Logger log = LogManager.getLogger(Driver.class);

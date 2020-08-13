@@ -15,21 +15,23 @@ public class User implements Serializable {
 	// User has many Accounts, or can have more than one
 	private String firstName;
 	private String lastName;
+	private Account accountBase;
 	
 	public User() {
 		super();
 	}
 	
-	public User(String username, String password, int type, String firstName, String lastName) {
+	public User(String username, String password, int type, String firstName, String lastName, Account accountBase) {
 		super();
 		this.username = username;
 		this.password = password;
 		this.type = type;
 		this.firstName = firstName;
 		this.lastName = lastName;
+		this.accountBase = accountBase;
 	}
 	
-	public User(int userID, String username, String password, int type, String firstName, String lastName) {
+	public User(int userID, String username, String password, int type, String firstName, String lastName, Account accountBase) {
 		super();
 		this.userID = userID;
 		this.username = username;
@@ -37,8 +39,16 @@ public class User implements Serializable {
 		this.type = type;
 		this.firstName = firstName;
 		this.lastName = lastName;
+		this.accountBase = accountBase;
 	}
 	
+	public int getUserID() {
+		return userID;
+	}
+
+	public void setUserID(int userID) {
+		this.userID = userID;
+	}
 	
 	public String getUsername() {
 		return username;
@@ -71,24 +81,41 @@ public class User implements Serializable {
 			this.password = password;
 		}
 	}
-	
-	
 
-	public int getUserID() {
-		return userID;
+	public String getFirstName() {
+		return firstName;
 	}
 
-	public void setUserID(int userID) {
-		this.userID = userID;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public Account getAccountBase() {
+		return accountBase;
+	}
+
+	public void setAccountBase(Account accountBase) {
+		this.accountBase = accountBase;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((accountBase == null) ? 0 : accountBase.hashCode());
 		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
 		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
+		result = prime * result + type;
+		result = prime * result + userID;
 		result = prime * result + ((username == null) ? 0 : username.hashCode());
 		return result;
 	}
@@ -102,6 +129,11 @@ public class User implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		User other = (User) obj;
+		if (accountBase == null) {
+			if (other.accountBase != null)
+				return false;
+		} else if (!accountBase.equals(other.accountBase))
+			return false;
 		if (firstName == null) {
 			if (other.firstName != null)
 				return false;
@@ -117,6 +149,10 @@ public class User implements Serializable {
 				return false;
 		} else if (!password.equals(other.password))
 			return false;
+		if (type != other.type)
+			return false;
+		if (userID != other.userID)
+			return false;
 		if (username == null) {
 			if (other.username != null)
 				return false;
@@ -127,8 +163,8 @@ public class User implements Serializable {
 
 	@Override
 	public String toString() {
-		return "User [username=" + username + ", password=" + password + ", firstName=" + firstName + ", lastName="
-				+ lastName + "]";
+		return "User [userID=" + userID + ", username=" + username + ", password=" + password + ", type=" + type
+				+ ", firstName=" + firstName + ", lastName=" + lastName + ", accountBase=" + accountBase + "]";
 	}
 	
 	

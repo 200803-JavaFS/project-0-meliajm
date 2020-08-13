@@ -58,16 +58,35 @@ public class AccountDAO implements IAccountDAO {
 				
 			} else {
 				// good place to log a failed query
+				//log.warn()
 				return null;
 			}
 		} catch(SQLException e) {
-			
+//			log.warn(e)
 		}
 		return null;
 	}
 
 	@Override
 	public boolean addAccount(Account a) {
+		
+		try(Connection conn = ConnectionUtility.getConnection()) {
+			String sql = "INSERT INTO accounts (account_id, balance, status_of_account, account_type)"
+					+ "VALUES (?, ?, ?, ?)";
+			PreparedStatement statement = conn.prepareStatement(sql);
+			
+			int index = 0;
+			statement.setString(++index, a.getAccountID());
+			statement.setString(++index, a.getBalance());
+			statement.setString(++index, a.getStatusOfAccount());
+			statement.setString(++index, a.setAccountType());
+			
+			statement.execute();
+			return true;
+			
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
 		// TODO Auto-generated method stub
 		return false;
 	}
