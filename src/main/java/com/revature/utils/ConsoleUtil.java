@@ -23,7 +23,7 @@ public class ConsoleUtil {
 		// admin employee basic user have different flows
 		System.out.println("Welcome to the Bank of Dog");
 		
-		System.out.println("Do you want to signup (s) or login (l)?");
+		System.out.println("Do you want to signup (s), login (l), or exit(e)?");
 		String signupOrLogin = scan.nextLine();
 		signupOrLoginSwitch(signupOrLogin);
 		
@@ -47,10 +47,70 @@ public class ConsoleUtil {
 	}
 
 	private void signupOrLoginSwitch(String signupOrLogin) {
-		// TODO Auto-generated method stub
+		signupOrLogin = signupOrLogin.toLowerCase();
+		switch(signupOrLogin) {
+		case "s":
+			signupUser();
+			break;
+		case "l":
+			loginUser();
+			break;
+		case "e":
+			System.out.println("Goodbye.");
+			break;
+		default:
+			System.out.println("You have entered an incorrect value. Try again.");
+			beginApp();
+			break;
+
+		}
 		
 	}
 
+	private void signupUser() {
+		// add validations for empty strings, etc.
+		System.out.println("Please enter a username you'd like to use.");
+		String username = scan.nextLine();
+		System.out.println("Please enter a password.");
+		String pass = scan.nextLine();
+		System.out.println("What kind of user are you? Basic (b), employee (e), admin(a)");
+		String userType = scan.nextLine();
+		System.out.println("What is your first name?");
+		String firstName = scan.nextLine();
+		System.out.println("What is your last name?");
+		String lastName = scan.nextLine();
+		
+		userType = userType.toLowerCase();
+		User u = null;
+		switch (userType) {
+			case "b":
+				u = new User(username, pass, 1, firstName, lastName);
+				break;
+			case "e":
+				u = new User(username, pass, 2, firstName, lastName);
+				break;
+			case "a":
+				u = new User(username, pass, 3, firstName, lastName);
+				break;
+			default:
+				System.out.println("You have entered an incorrect value. Try again.");
+				beginApp();
+				break;
+		}
+
+
+
+
+	}
+
+	private void loginUser() {
+		System.out.println("What is your username?");
+		String username = scan.nextLine();
+		System.out.println("What is your password?");
+		String pass = scan.nextLine();
+		// question
+	}
+	
 	private void answerSwitch(String answer) {
 		answer = answer.toLowerCase();
 		switch (answer) {
