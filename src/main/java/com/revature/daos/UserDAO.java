@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.revature.models.User;
+import com.revature.models.Account;
 import com.revature.utils.ConnectionUtility;
 
 public class UserDAO implements IUserDAO {
@@ -27,14 +28,14 @@ public class UserDAO implements IUserDAO {
 			while(result.next()) {
 				User u = new User(result.getInt("user_id"), 
 						result.getString("username"),
-						result.getString("password"),
-						result.getInt("type"),
+						result.getString("user_password"),
+						result.getInt("user_type"),
 						result.getString("first_name"),
 						result.getString("last_name"),
 						null);
-				// null
-				if (result.getString("account_id_fk")!=null) {
-					u.setAccountID(aDao.findByID(result.getInt("account_id_fk")));
+				// question
+				if (result.getInt("account_id_fk")!=0) {
+					u.setAccountBase(aDao.findByID(result.getInt("account_id_fk")));
 					
 				}
 				list.add(u);
@@ -52,7 +53,20 @@ public class UserDAO implements IUserDAO {
 			String sql = "SELECT * FROM users WHERE user_id ="+id+";";
 			Statement statement = conn.createStatement();
 			ResultSet result = statement.executeQuery(sql);
-			if (result.getString("account_id_fk")) {
+			if (result.next()) {
+				User u = new User(result.getInt("user_id"), 
+						result.getString("username"),
+						result.getString("user_password"),
+						result.getInt("user_type"),
+						result.getString("first_name"),
+						result.getString("last_name"),
+						null);
+				// question
+				if (result.getInt("account_id_fk")!=0) {
+					u.setAccountBase(aDao.findByID(result.getInt("account_id_fk")));
+					
+				}
+				return u;
 				
 			}
 		} catch(SQLException e) {
@@ -64,8 +78,8 @@ public class UserDAO implements IUserDAO {
 	@Override
 	public boolean addUser(User u) {
 		try (Connection conn = ConnectionUtility.getConnection()) {
-			String sql = "INSERT INTO users (user_id, username, password, type, first_name, last_name, account_id_fk)"
-					+ "VALUES (?, ?, ?, ?, ?, ?, ?);";
+			String sql = "INSERT INTO users (username, user_password, user_type, first_name, last_name, account_id_fk)"
+					+ "VALUES (?, ?, ?, ?, ?, ?);";
 			PreparedStatement statement = conn.prepareStatement(sql);
 			
 			int index = 0;
@@ -75,14 +89,17 @@ public class UserDAO implements IUserDAO {
 			statement.setInt(++index, u.getType());
 			statement.setString(++index, u.getFirstName());
 			statement.setString(++index, u.getLastName());
-			if(u.getAccount()!=null) {
-				Account a = u.getAccount();
-				statement.setInt(++index, a.getAccount());
+			if(u.getAccountBase()!=null) {
+				Account a = u.getAccountBase();
+				statement.setInt(++index, a.getAccountID());
 			} else {
-				statement.setInt(++index, null);
+				// question
+				statement.setInt(++index, 0);
 			}
 			statement.execute();
 			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 		return false;
 	}
@@ -90,22 +107,22 @@ public class UserDAO implements IUserDAO {
 	@Override
 	public boolean updateUser(User u) {
 		try (Connection conn = ConnectionUtility.getConnection()) {
-			String sql = "UPDATE users SET user_id = ?, username = ?, password = ?, type = ?, first_name = ?, last_name = ?, account_id_fk = ? WHERE user_id = ?;";
+			String sql = "UPDATE users SET username = ?, password = ?, type = ?, first_name = ?, last_name = ?, account_id_fk = ? WHERE user_id = ?;";
 			
-PreparedStatement statement = conn.prepareStatement(sql);
+			PreparedStatement statement = conn.prepareStatement(sql);
 			
 			int index = 0;
-			statement.setInt(++index, u.getUserID());
 			statement.setString(++index, u.getUsername());
 			statement.setString(++index, u.getPassword());
 			statement.setInt(++index, u.getType());
 			statement.setString(++index, u.getFirstName());
 			statement.setString(++index, u.getLastName());
-			if(u.getAccount()!=null) {
-				Account a = u.getAccount();
-				statement.setInt(++index, a.getAccount());
+			if(u.getAccountBase()!=null) {
+				Account a = u.getAccountBase();
+				statement.setInt(++index, a.getAccountID());
 			} else {
-				statement.setInt(++index, null);
+				// question
+				statement.setInt(++index, 0);
 			}
 			statement.setInt(++index, u.getUserID());
 			statement.execute();
@@ -124,6 +141,40 @@ PreparedStatement statement = conn.prepareStatement(sql);
 			statement.execute(sql);
 			return true;
 		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+	@Override
+	public boolean addUserWithAccount(User u) {
+		try (Connection conn = ConnectionUtility.getConnection()){
+			
+			String sql = "BEGIN; "
+					+ "INSERT INTO accounts (account_id, balance, status_of_account, account_type)"
+					+ "VALUES (?, ?, ?, ?);"
+					+ "INSERT INTO users (username, user_password, user_type, first_name, last_name, account_id_fk)"
+					+ "VALUES (?, ?, ?, ?, ?, ?);"
+					+ "COMMIT;";
+			
+			PreparedStatement statement = conn.prepareStatement(sql);
+			
+			Account a = u.getAccountBase();
+			
+			int index = 0;
+			statement.setInt(++index, a.getAccountID());
+			statement.setDouble(++index, a.getBalance());
+			statement.setInt(++index, a.getStatusOfAccount());
+			statement.setString(++index, a.getAccountType());
+			statement.setString(++index, u.getUsername());
+			statement.setString(++index, u.getPassword());
+			statement.setInt(++index, u.getType());
+			statement.setString(++index, u.getFirstName());
+			statement.setString(++index, u.getLastName());
+			statement.setInt(++index, a.getAccountID());
+			
+			statement.execute();
+			return true;
+		}catch(SQLException e) {
 			e.printStackTrace();
 		}
 		return false;

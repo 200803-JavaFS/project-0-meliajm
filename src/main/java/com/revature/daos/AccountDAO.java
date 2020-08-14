@@ -17,7 +17,7 @@ public class AccountDAO implements IAccountDAO {
 	public List<Account> findAll() {
 		
 		try(Connection conn = ConnectionUtility.getConnection()) {
-			String sql = "SELECT * FROM accounts";
+			String sql = "SELECT * FROM accounts;";
 			Statement statement = conn.createStatement();
 			
 			List<Account> list = new ArrayList<>();
@@ -26,9 +26,10 @@ public class AccountDAO implements IAccountDAO {
 			
 			while (result.next()) {
 				Account a = new Account();
-				a.setName(result.getString("account_name"));
-//				a.setBalance(result.getString("balance"));
-//				a.setStatusOfAccount(result.getString("account_type"));
+				a.setAccountID(result.getInt("account_id"));
+				a.setAccountType(result.getString("account_type"));
+				a.setBalance(result.getDouble("balance"));
+				a.setStatusOfAccount(result.getInt("account_type"));
 				list.add(a);
 			}
 			return list;
@@ -39,26 +40,26 @@ public class AccountDAO implements IAccountDAO {
 		}
 		return null;
 	}
-
+// /////////// come back to this
 	@Override
-	// find by ID instead of name
-	public Account findByName(String name) {
+	public Account findByID(int id) {
 		try (Connection conn = ConnectionUtility.getConnection()) {
-			String sql = "SELECT * FROM accounts WHERE account_id = ?;";
-			PreparedStatement statement = conn.prepareStatement(sql);
-			statement.setString(1, name);
+			String sql = "SELECT * FROM accounts WHERE account_id =" + id + ";";
 			
-			ResultSet result = statement.executeQuery();
+			Statement statement = conn.createStatement();
+			
+			ResultSet result = statement.executeQuery(sql);
+			
 			if (result.next()) {
-				Account a = new Account();
-				a.setName(result.getString("account_name"));
-//				a.setBalance(result.getString("balance"));
-//				a.setStatusOfAccount(result.getString("account_type"));
+				Account a = new Account(result.getInt("account_id"),
+						result.getDouble("balance"), result.getInt("status_of_account"),
+						result.getString("account_type"));
 				return a;
 				
 			} else {
 				// good place to log a failed query
 				//log.warn()
+				// still need this?
 				return null;
 			}
 		} catch(SQLException e) {
@@ -72,14 +73,14 @@ public class AccountDAO implements IAccountDAO {
 		
 		try(Connection conn = ConnectionUtility.getConnection()) {
 			String sql = "INSERT INTO accounts (account_id, balance, status_of_account, account_type)"
-					+ "VALUES (?, ?, ?, ?)";
+					+ "VALUES (?, ?, ?, ?);";
 			PreparedStatement statement = conn.prepareStatement(sql);
 			
 			int index = 0;
-			statement.setString(++index, a.getAccountID());
-			statement.setString(++index, a.getBalance());
-			statement.setString(++index, a.getStatusOfAccount());
-			statement.setString(++index, a.setAccountType());
+			statement.setInt(++index, a.getAccountID());
+			statement.setDouble(++index, a.getBalance());
+			statement.setInt(++index, a.getStatusOfAccount());
+			statement.setString(++index, a.getAccountType());
 			
 			statement.execute();
 			return true;
@@ -87,7 +88,6 @@ public class AccountDAO implements IAccountDAO {
 		} catch(SQLException e) {
 			e.printStackTrace();
 		}
-		// TODO Auto-generated method stub
 		return false;
 	}
 

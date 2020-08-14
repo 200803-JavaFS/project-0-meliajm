@@ -15,5 +15,7 @@ public interface IUserDAO {
 	public boolean updateUser(User u);
 	
 	public boolean deleteUser(int id);
+	
+	public boolean addUserWithAccount(User a);
 
 }

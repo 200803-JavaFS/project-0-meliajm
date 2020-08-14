@@ -7,7 +7,6 @@ import com.revature.models.Account;
 public interface IAccountDAO {
 	
 	public List<Account> findAll();
-//	public Account findByName(String name);
 	public Account findByID(int id);
 	public boolean addAccount(Account a);
 

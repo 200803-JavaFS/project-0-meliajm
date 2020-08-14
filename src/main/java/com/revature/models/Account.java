@@ -62,15 +62,19 @@ public class Account implements Serializable {
 		return statusOfAccount;
 	}
 	
-	// only access for employees need to add  so that only employee can do that
-	public void setStatusOfAccount(int statusOfAccount, User u) {
-		if (u.getType() == 2 || u.getType() == 3) {
-			// need extra validation here? for True or False
-			this.statusOfAccount = statusOfAccount;
-			
-			System.out.println("The status of your account is " + this.statusOfAccount);
-		} 
+	public void setStatusOfAccount(int statusOfAccount) {
+		this.statusOfAccount = statusOfAccount;	
 	}
+	
+	// only access for employees need to add  so that only employee can do that
+//	public void setStatusOfAccount(int statusOfAccount, User u) {
+//		if (u.getType() == 2 || u.getType() == 3) {
+//			// need extra validation here? for True or False
+//			this.statusOfAccount = statusOfAccount;
+//			
+//			System.out.println("The status of your account is " + this.statusOfAccount);
+//		} 
+//	}
 	
 	// admin can cancel account
 	public void cancelAccount(boolean statusOfAccount, User u) {
