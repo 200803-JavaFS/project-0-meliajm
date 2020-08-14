@@ -8,6 +8,7 @@ do we need to unit test our setters and getters?
 
 
 to do:
+[] check update for user
 [] try, catch block for invalid inputs in menu like strings when it should be int
 [?] connect scanner to Account
 [?] associate User and Account

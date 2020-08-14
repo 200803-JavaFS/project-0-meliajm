@@ -11,25 +11,28 @@ public class Account implements Serializable {
 	private double balance;
 	private int statusOfAccount; // changed from boolean to int
 	private String accountType;
+	private User user;
 		
 	public Account() {
 		super();
 	}
 	// constructor for homebase?
 	// all getters and setters?
-	public Account(int accountID, double balance, int statusOfAccount, String accountType) {
+	public Account(int accountID, double balance, int statusOfAccount, String accountType, User user) {
 		super();
 		this.accountID = accountID;
 		this.balance = balance;
 		this.statusOfAccount = statusOfAccount;
-		this.accountType = accountType;		
+		this.accountType = accountType;	
+		this.user = user;
 	}
 	
-	public Account(double balance, int statusOfAccount, String accountType) {
+	public Account(double balance, int statusOfAccount, String accountType, User user) {
 		super();
 		this.balance = balance;
 		this.statusOfAccount = statusOfAccount;
-		this.accountType = accountType;		
+		this.accountType = accountType;	
+		this.user = user;
 	}
 	
 	public int getAccountID() {
@@ -66,6 +69,8 @@ public class Account implements Serializable {
 		this.statusOfAccount = statusOfAccount;	
 	}
 	
+	
+	
 	// only access for employees need to add  so that only employee can do that
 //	public void setStatusOfAccount(int statusOfAccount, User u) {
 //		if (u.getType() == 2 || u.getType() == 3) {
@@ -76,6 +81,12 @@ public class Account implements Serializable {
 //		} 
 //	}
 	
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
+	}
 	// admin can cancel account
 	public void cancelAccount(boolean statusOfAccount, User u) {
 		if (u.getType() == 3) {	
@@ -101,6 +112,7 @@ public class Account implements Serializable {
 		temp = Double.doubleToLongBits(balance);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
 		result = prime * result + statusOfAccount;
+		result = prime * result + ((user == null) ? 0 : user.hashCode());
 		return result;
 	}
 	@Override
@@ -123,20 +135,16 @@ public class Account implements Serializable {
 			return false;
 		if (statusOfAccount != other.statusOfAccount)
 			return false;
+		if (user == null) {
+			if (other.user != null)
+				return false;
+		} else if (!user.equals(other.user))
+			return false;
 		return true;
 	}
 	@Override
 	public String toString() {
 		return "Account [accountID=" + accountID + ", balance=" + balance + ", statusOfAccount=" + statusOfAccount
-				+ ", accountType=" + accountType + "]";
+				+ ", accountType=" + accountType + ", user=" + user + "]";
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-
 }

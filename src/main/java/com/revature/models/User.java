@@ -15,23 +15,22 @@ public class User implements Serializable {
 	// User has many Accounts, or can have more than one
 	private String firstName;
 	private String lastName;
-	private Account accountBase;
+	
 	
 	public User() {
 		super();
 	}
 	
-	public User(String username, String password, int type, String firstName, String lastName, Account accountBase) {
+	public User(String username, String password, int type, String firstName, String lastName) {
 		super();
 		this.username = username;
 		this.password = password;
 		this.type = type;
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.accountBase = accountBase;
 	}
 	
-	public User(int userID, String username, String password, int type, String firstName, String lastName, Account accountBase) {
+	public User(int userID, String username, String password, int type, String firstName, String lastName) {
 		super();
 		this.userID = userID;
 		this.username = username;
@@ -39,7 +38,6 @@ public class User implements Serializable {
 		this.type = type;
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.accountBase = accountBase;
 	}
 	
 	public int getUserID() {
@@ -98,19 +96,10 @@ public class User implements Serializable {
 		this.lastName = lastName;
 	}
 
-	public Account getAccountBase() {
-		return accountBase;
-	}
-
-	public void setAccountBase(Account accountBase) {
-		this.accountBase = accountBase;
-	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((accountBase == null) ? 0 : accountBase.hashCode());
 		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
 		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
@@ -129,11 +118,6 @@ public class User implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		User other = (User) obj;
-		if (accountBase == null) {
-			if (other.accountBase != null)
-				return false;
-		} else if (!accountBase.equals(other.accountBase))
-			return false;
 		if (firstName == null) {
 			if (other.firstName != null)
 				return false;
@@ -164,10 +148,8 @@ public class User implements Serializable {
 	@Override
 	public String toString() {
 		return "User [userID=" + userID + ", username=" + username + ", password=" + password + ", type=" + type
-				+ ", firstName=" + firstName + ", lastName=" + lastName + ", accountBase=" + accountBase + "]";
+				+ ", firstName=" + firstName + ", lastName=" + lastName + "]";
 	}
-	
-	
 	
 //	int userEnum, this will be 1 for basic
 //	2 for employee
@@ -178,8 +160,4 @@ public class User implements Serializable {
 	// check to confirm user is an employee?
 	// employee id?
 	
-	
-	
-	
-
 }
