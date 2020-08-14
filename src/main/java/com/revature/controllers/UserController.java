@@ -35,7 +35,7 @@ public class UserController {
 	}
 	
 	public boolean insertUser(User u) {
-		log.info("inserting a user: " + u);
+		log.info("adding a user: " + u);
 
 		if (dao.addUser(u)) {
 			return true;
@@ -43,14 +43,14 @@ public class UserController {
 		return false;
 	}
 	
-	public boolean removeUser(int id) {
-		log.info("deleting a user: " + u);
-
-		if (dao.deleteUser(id)) {
-			return true;
-		}
-		return false;
-	}
+//	public boolean removeUser(int id) {
+//		log.info("deleting a user: " + u);
+//
+//		if (dao.deleteUser(id)) {
+//			return true;
+//		}
+//		return false;
+//	}
 	
 	
 	

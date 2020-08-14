@@ -6,6 +6,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.revature.models.Account;
+import com.revature.models.User;
 import com.revature.daos.AccountDAO;
 import com.revature.daos.IAccountDAO;
 import com.revature.daos.IUserDAO;
@@ -42,10 +43,37 @@ public class AccountController {
 	}
 	
 	public boolean insertAccount(Account a) {
-		if (a.getUser() != 0) {
+		if (a.getUser() != null) {
 			List<User> list = uDao.findAll();
+			boolean b = false;
+			for (User u: list) {
+				if (u.equals(a.getUser())) {
+					b = true;
+				}
+			}
+			if (b) {
+				log.info("Adding account: " + a);
+				if (dao.addAccount(a)) {
+					return true;
+				}
+			} else {
+				log.info("Adding account: " + a + "with a new User:" + a.getUser());
+				if (dao.addAccountWithUser(a)) {
+					return true;
+				}
+			}
+		} else {
+			log.info("Adding account: " + a);
+			if (dao.addAccount(a)) {
+				return true;
+			}
 		}
+		return false;
 	}
+	
+//	public boolean removeAccount(int id) {
+//		log.info(", message, p0, p1, p2, p3, p4, p5, p6, p7);
+//	}
 	
 	public static double deposit(Account a, double amount) {
 		if (amount <= 0) {

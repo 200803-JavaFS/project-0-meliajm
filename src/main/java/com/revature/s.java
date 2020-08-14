@@ -59,9 +59,9 @@ public class s {
     		System.out.println("2 for savings");
     		checkingOrSavings = scan.nextInt();
     			if (checkingOrSavings == 1) {    				
-    				a  = new Account("Checking");
+//    				a  = new Account("Checking");
     			} else if (checkingOrSavings == 2) {
-    				a  = new Account("Savings");
+//    				a  = new Account("Savings");
     			} else if (checkingOrSavings == 3) {
     				System.out.println("Goodbye.");    				
     			} else {
@@ -82,15 +82,15 @@ public class s {
         
         scan.close();
         
-        User u = new User(username, password, typeOfUser);
+//        User u = new User(username, password, typeOfUser);
         
-        System.out.println(u);
-        System.out.println(u.getUsername());
-        System.out.println(u.getPassword());
-        System.out.println(u.getType());
-        
-        System.out.println("Account type: " + a.getType());
-        
+//        System.out.println(u);
+//        System.out.println(u.getUsername());
+//        System.out.println(u.getPassword());
+//        System.out.println(u.getType());
+//        
+//        System.out.println("Account type: " + a.getType());
+//        
         System.out.println("Username: " + username);
         System.out.println("Password: " + password);
 

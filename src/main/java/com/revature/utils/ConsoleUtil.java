@@ -7,17 +7,28 @@ import com.revature.controllers.AccountController;
 import com.revature.controllers.UserController;
 import com.revature.models.Account;
 import com.revature.models.User;
+import com.revature.daos.UserDAO;
+import com.revature.daos.AccountDAO;
 //add try catch
 
 public class ConsoleUtil {
 	
 	private static final Scanner scan = new Scanner(System.in);
-	private UserController uc = new UserController();
 	private AccountController ac = new AccountController();
+	private UserController uc = new UserController();
+	private UserDAO ud = new UserDAO();
+	private AccountDAO ad = new AccountDAO();
 
 	public void beginApp() {
 		// admin employee basic user have different flows
 		System.out.println("Welcome to the Bank of Dog");
+		
+		System.out.println("Do you want to signup (s) or login (l)?");
+		String signupOrLogin = scan.nextLine();
+		signupOrLoginSwitch(signupOrLogin);
+		
+		System.out.println();
+
 		System.out.println("What would you like to do?");
 		System.out.println("ALL to see all users");
 		System.out.println("ONE to see one user");
@@ -33,6 +44,11 @@ public class ConsoleUtil {
 
 		String answer = scan.nextLine();
 		answerSwitch(answer);
+	}
+
+	private void signupOrLoginSwitch(String signupOrLogin) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	private void answerSwitch(String answer) {
