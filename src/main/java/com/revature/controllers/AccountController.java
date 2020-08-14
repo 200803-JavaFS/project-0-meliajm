@@ -1,26 +1,52 @@
 package com.revature.controllers;
 
+import java.util.List;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.revature.Driver;
 import com.revature.models.Account;
-//import com.revature.repos.AccountDAO;
+import com.revature.daos.AccountDAO;
+import com.revature.daos.IAccountDAO;
+import com.revature.daos.IUserDAO;
+import com.revature.daos.UserDAO;
 
 public class AccountController {
-	// singleton
+
+	private static IAccountDAO dao = new AccountDAO();
+	private static IUserDAO uDao = new UserDAO();
 	private static final Logger log = LogManager.getLogger(AccountController.class);
 	
-//	private AccountDAO dao = new AccountDAO();
-//	private static Account a = new Account();
-
-//	public Account findAccountById(int i) {
-//		log.info("logging in account controller");
-////		return dao.findById(i);
-//	}
-	// make account instance?
+	public List<Account> findAll() {
+		log.info("Retrieving all accounts");
+		List<Account> list = dao.findAll();
+		
+		// what goes here?
+		for (Account a: list) {
+			System.out.println("account :" + a);;
+		}
+		return list;
+	}
 	
-	// account as argument for methods
+	public Account findById(int id) {
+		log.info("finding account with id " +id);
+		return dao.findByID(id);
+	}
+	
+	public boolean updateAccount(Account a) {
+		log.info("Updating account "+ a);
+		if (dao.updateAccount(a)) {
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean insertAccount(Account a) {
+		if (a.getUser() != 0) {
+			List<User> list = uDao.findAll();
+		}
+	}
+	
 	public static double deposit(Account a, double amount) {
 		if (amount <= 0) {
 			System.out.println("You must deposit a positive value.");
