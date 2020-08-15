@@ -40,3 +40,6 @@
 2020-08-14 21:30:48 INFO  UserController:25 - finding a user with id 1
 2020-08-14 21:34:03 INFO  UserController:25 - finding a user with id 3
 2020-08-14 21:36:30 INFO  UserController:25 - finding a user with id 3
+2020-08-14 21:55:47 INFO  UserController:25 - finding a user with id 1
+2020-08-14 21:56:35 INFO  UserController:25 - finding a user with id 1
+2020-08-14 22:21:48 INFO  UserController:25 - finding a user with id 1

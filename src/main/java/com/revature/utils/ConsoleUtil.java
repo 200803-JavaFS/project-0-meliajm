@@ -119,7 +119,7 @@ public class ConsoleUtil {
 				System.out.println("user id: "+us.getUserID());
 				switch(us.getType()) {
 					case 1:
-						menuBasic();
+						menuBasic(us);
 						break;
 					case 2:
 						menuEmploy();
@@ -142,33 +142,56 @@ public class ConsoleUtil {
 		}
 	}
 	
-	private void menuBasic() {
+	private void menuBasic(User us) {
 		System.out.println("What do you want to do? Open account (o), View account (v)");
 		String ans = scan.nextLine();
 		ans = ans.toLowerCase();
+		
 		switch(ans) {
 		case "o":
-			openAccount();
+			openAccount(us);
 			break;
 		case "v":
-			viewAccount();
+			viewAccount(us);
 			break;
 		default:
 			System.out.println("System error.");
 			beginApp();
 			break;
 		}
-		// approve account	
+		// approve account?	
 	}
 	
-	private void openAccount() {
+	private void openAccount(User us) {
 		System.out.println("You are opening an account.");
+		System.out.println("Do you want to open a CHECKINGS (c) or SAVINGS (s)?");
+		String accountType = scan.nextLine();
+		accountType = accountType.toLowerCase();
+		Account a = null;
+		
+		switch(accountType) {
+		case "c":
+			a = new Account(0.00, 1, "CHECKINGS", us);
+			ac.insertAccount(a);
+			break;
+		case "s":
+			a = new Account(0.00, 1, "SAVINGS", us);
+			ac.insertAccount(a);
+			break;
+		default:
+			System.out.println("System error.");
+			beginApp();
+			break;
+		}
+		
+		//addAccount
 		
 	}
 
-	private void viewAccount() {
+	private void viewAccount(User us) {
 		System.out.println("You are viewing your accounts.");
-		
+//		findall
+//		withdraw, transfer, deposit
 	}
 
 	
@@ -247,10 +270,7 @@ public class ConsoleUtil {
 //		return null;
 //	}
 
-	private Account makeAccount() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 
 	private void getOneUser() {
 		System.out.println("What is the id of the user you would like to see?");
