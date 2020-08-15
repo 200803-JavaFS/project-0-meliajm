@@ -53,6 +53,7 @@ public class UserDAO implements IUserDAO {
 				u.setType(result.getInt("user_type"));
 				u.setFirstName(result.getString("first_name"));
 				u.setLastName(result.getString("last_name"));
+				System.out.println("user in find by id: " + u);
 				return u;
 			} else {
 				return null;

@@ -63,10 +63,8 @@ public class User implements Serializable {
 		return type;
 	}
 
-	public void setType(int type) {
-		if (type==2 || type==3) {			
-			this.type = type;
-		}
+	public void setType(int type) {			
+		this.type = type;
 	}
 
 	public String getPassword() {

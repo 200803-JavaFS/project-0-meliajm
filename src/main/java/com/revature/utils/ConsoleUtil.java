@@ -73,7 +73,7 @@ public class ConsoleUtil {
 		String username = scan.nextLine();
 		System.out.println("Please enter a password.");
 		String pass = scan.nextLine();
-		System.out.println("What kind of user are you? Basic (b), employee (e), admin(a)");
+		System.out.println("What kind of user are you? Basic (b), Employee (e), Admin (a)");
 		String userType = scan.nextLine();
 		System.out.println("What is your first name?");
 		String firstName = scan.nextLine();
@@ -99,22 +99,24 @@ public class ConsoleUtil {
 				beginApp();
 				break;
 		}
-//		uc.insertUser(u);
 	}
 
 	private void loginUser() {
 		System.out.println("What is your user id?");
 		int id = scan.nextInt();
+		scan.nextLine();
 		System.out.println("What is your password?");
 		String pass = scan.nextLine();
 		User us = uc.findByID(id);
+		System.out.println("id: "+ id);
+		System.out.println("pass: "+ pass);
+		System.out.println("user password: "+ us.getPassword().equals(pass));
 		if (us!=null) {			
 			if (us.getPassword().equals(pass)) {
 				System.out.println("You are logged in.");
 				System.out.println("user: "+us);
 				System.out.println("user type: "+us.getType());
 				System.out.println("user id: "+us.getUserID());
-//				loginEachUserType();
 				switch(us.getType()) {
 					case 1:
 						menuBasic();
@@ -140,27 +142,36 @@ public class ConsoleUtil {
 		}
 	}
 	
+	private void menuBasic() {
+		System.out.println("What do you want to do? Open account (o), View account (v)");
+		String ans = scan.nextLine();
+		ans = ans.toLowerCase();
+		switch(ans) {
+		case "o":
+			openAccount();
+			break;
+		case "v":
+			viewAccount();
+			break;
+		default:
+			System.out.println("System error.");
+			beginApp();
+			break;
+		}
+		// approve account	
+	}
 	
+	private void openAccount() {
+		System.out.println("You are opening an account.");
+		
+	}
+
+	private void viewAccount() {
+		System.out.println("You are viewing your accounts.");
+		
+	}
+
 	
-	
-//	private void loginEachUserType() {
-//		switch(us.getType()) {
-//			case 1:
-//				loginBasic();
-//				break;
-//			case 2:
-//				loginEmploy();
-//				break;
-//			case 3:
-//				loginAdmin();
-//				break;
-//			default:
-//				System.out.println("System error.");
-//				beginApp();
-//				break;
-//		}
-//		
-//	}
 
 	private void menuAdmin() {
 		// TODO Auto-generated method stub
@@ -172,10 +183,7 @@ public class ConsoleUtil {
 		
 	}
 
-	private void menuBasic() {
-		// TODO Auto-generated method stub
-		
-	}
+	
 
 	private void answerSwitch(String answer) {
 		answer = answer.toLowerCase();

@@ -14,7 +14,7 @@ import com.revature.controllers.AccountController;
 public class AccountController {
 
 	public static Account a;
-	public static AccountController ac;
+//	public static AccountController ac;
 	public static double depos;
 	public static double z;
 	public static double neg;
@@ -28,10 +28,10 @@ public class AccountController {
 	public static void setAcc() {
 		System.out.println("In BeforeClass");
 		a = new Account();
-		ac = new AccountController();
+//		ac = new AccountController();
 		System.out.println(a.getStatusOfAccount());
 		System.out.println(a.getBalance());
-		System.out.println(a.getId());
+//		System.out.println(a.getId());
 		// print out other getters
 	}
 	
@@ -59,21 +59,21 @@ public class AccountController {
 	public static void clearAcc() {
 		System.out.println("In AfterClass");
 		a = null;
-		ac = null;
+//		ac = null;
 	}
 	
 	@Test
 	public static void testDepositPositive() {
 		System.out.println("Testing deposit positive");
 		
-		result = ac.deposit(depos);
+//		result = ac.deposit(depos);
 		assertTrue(result == 700.00);		
 	}
 
 	@Test
 	public static void testDepositNotPositive() {
 		System.out.println("Testing deposit not positive");
-		result = ac.deposit(z);
+//		result = ac.deposit(z);
 		assertTrue(result == 200.00);		
 	}
 	
@@ -81,21 +81,21 @@ public class AccountController {
 	@Test
 	public static void testWithdraw() {
 		System.out.println("Testing withdraw");
-		result = ac.withdraw(withd);
+//		result = ac.withdraw(withd);
 		assertTrue(result == 100.00);		
 	}
 	
 	@Test
 	public void testWithdrawNeg() {
 		System.out.println("Testing withdraw neg");
-		result = ac.withdraw(neg);
+//		result = ac.withdraw(neg);
 		assertTrue(result == 200.00);		
 	}
 	
 	@Test
 	public void testWithdrawOver() {
 		System.out.println("Testing withdraw over");
-		result = ac.withdraw(over);
+//		result = ac.withdraw(over);
 		assertTrue(result == 200.00);		
 	}
 	
@@ -103,21 +103,21 @@ public class AccountController {
 	@Test
 	public void testTransfer() {
 		System.out.println("Testing transfer");
-		result = ac.transfer(tr, accNam);
+//		result = ac.transfer(tr, accNam);
 		assertTrue(result == 0.00);
 	}
 	
 	@Test
 	public void testTransferNeg() {
 		System.out.println("Testing transfer");
-		result = ac.transfer(neg, accNam);
+//		result = ac.transfer(neg, accNam);
 		assertTrue(result == 200.00);
 	}
 	
 	@Test
 	public void testTransferOver() {
 		System.out.println("Testing transfer");
-		result = ac.transfer(over, accNam);
+//		result = ac.transfer(over, accNam);
 		assertTrue(result == 200.00);
 	}
 

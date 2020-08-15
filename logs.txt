@@ -23,3 +23,20 @@
 2020-08-14 19:34:03 INFO  UserController:43 - adding a user: User [userID=0, username=lizamarie, password=p, type=1, firstName=lm, lastName=o]
 2020-08-14 20:00:07 INFO  UserController:43 - adding a user: User [userID=0, username=lizlemon, password=p, type=1, firstName=liz, lastName=lemon]
 2020-08-14 20:02:25 INFO  UserController:43 - adding a user: User [userID=0, username=lizlemon, password=p, type=1, firstName=liz, lastName=lemon]
+2020-08-14 21:00:15 INFO  UserController:25 - finding a user with id 1
+2020-08-14 21:00:29 INFO  UserController:25 - finding a user with id 1
+2020-08-14 21:08:33 INFO  UserController:25 - finding a user with id 1
+2020-08-14 21:09:42 INFO  UserController:25 - finding a user with id 1
+2020-08-14 21:11:26 INFO  UserController:25 - finding a user with id 1
+2020-08-14 21:13:18 INFO  UserController:25 - finding a user with id 1
+2020-08-14 21:14:13 INFO  UserController:25 - finding a user with id 1
+2020-08-14 21:15:11 INFO  UserController:25 - finding a user with id 1
+2020-08-14 21:17:00 INFO  UserController:25 - finding a user with id 1
+2020-08-14 21:18:06 INFO  UserController:25 - finding a user with id 3
+2020-08-14 21:18:33 INFO  UserController:25 - finding a user with id 2
+2020-08-14 21:19:36 INFO  UserController:43 - adding a user: User [userID=0, username=blue, password=p, type=3, firstName=blue, lastName=jeans]
+2020-08-14 21:21:37 INFO  UserController:25 - finding a user with id 4
+2020-08-14 21:25:13 INFO  UserController:25 - finding a user with id 1
+2020-08-14 21:30:48 INFO  UserController:25 - finding a user with id 1
+2020-08-14 21:34:03 INFO  UserController:25 - finding a user with id 3
+2020-08-14 21:36:30 INFO  UserController:25 - finding a user with id 3
