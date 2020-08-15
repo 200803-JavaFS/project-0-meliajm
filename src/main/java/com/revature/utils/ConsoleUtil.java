@@ -203,6 +203,7 @@ public class ConsoleUtil {
 						viewAllUserAccounts(us);
 					} else {
 						System.out.println("You cannot over-withdraw or withdraw a non-positive number.");
+						updateUserAccount(us);
 					}
 					break;
 				case "t":
@@ -224,6 +225,9 @@ public class ConsoleUtil {
 							System.out.println("That's not an account available account");
 							viewAllUserAccounts(us);
 						}
+					} else {
+						System.out.println("You cannot transfer non-positive number.");
+						updateUserAccount(us);
 					}
 					break;
 				case "d":
@@ -237,6 +241,7 @@ public class ConsoleUtil {
 						viewAllUserAccounts(us);
 					} else {
 						System.out.println("What do you mean you want to deposit a negative amount?");
+						updateUserAccount(us);
 					}
 					break;
 				case "e":
@@ -244,12 +249,12 @@ public class ConsoleUtil {
 					break;
 				default:
 					System.out.println("System error.");
-					beginApp();
+					menuBasic(us);
 					break;
 				}
 			} else {
 				System.out.println("You cannot access this account because the status is not open or it is not your account");
-				beginApp();
+				menuBasic(us);
 			}
 		}
 	}

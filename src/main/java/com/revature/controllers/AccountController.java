@@ -76,41 +76,41 @@ public class AccountController {
 //		log.info(", message, p0, p1, p2, p3, p4, p5, p6, p7);
 //	}
 	
-	public static double deposit(Account a, double amount) {
-		if (amount <= 0) {
-			System.out.println("You must deposit a positive value.");
-			return a.getBalance();
-		} else {
-			// add to balance
-			System.out.println("You made a deposit.");
-			return a.getBalance() + amount;
-		}
-	}
+//	public static double deposit(Account a, double amount) {
+//		if (amount <= 0) {
+//			System.out.println("You must deposit a positive value.");
+//			return a.getBalance();
+//		} else {
+//			// add to balance
+//			System.out.println("You made a deposit.");
+//			return a.getBalance() + amount;
+//		}
+//	}
 	
-	public static double withdraw(Account a, double amount) {
-		if (amount <= 0) {
-			System.out.println("You must withdraw a positive value.");
-			return a.getBalance();
-		} else if (a.getBalance() - amount >= 0) {			
-			System.out.println("You made a withdraw.");
-			return a.getBalance() - amount;
-		} else {
-			System.out.println("You cannot over-withdraw from your account.");			
-			return a.getBalance();
-		}
-	}
+//	public static double withdraw(Account a, double amount) {
+//		if (amount <= 0) {
+//			System.out.println("You must withdraw a positive value.");
+//			return a.getBalance();
+//		} else if (a.getBalance() - amount >= 0) {			
+//			System.out.println("You made a withdraw.");
+//			return a.getBalance() - amount;
+//		} else {
+//			System.out.println("You cannot over-withdraw from your account.");			
+//			return a.getBalance();
+//		}
+//	}
 	
-	public static double transfer(Account a, double amount, String accountName) {
-		if (amount <= 0) {
-			System.out.println("You can only transfer a positive amount.");
-			return a.getBalance();
-		} else if (a.getBalance() - amount >= 0) {			
-			System.out.println("You made a transfer to " + accountName + ".");
-			return a.getBalance() - amount;
-		} else {
-			System.out.println("You cannot transfer that amount based on the current balance of your account.");
-			return a.getBalance();
-		}
-	}
+//	public static double transfer(Account a, double amount, String accountName) {
+//		if (amount <= 0) {
+//			System.out.println("You can only transfer a positive amount.");
+//			return a.getBalance();
+//		} else if (a.getBalance() - amount >= 0) {			
+//			System.out.println("You made a transfer to " + accountName + ".");
+//			return a.getBalance() - amount;
+//		} else {
+//			System.out.println("You cannot transfer that amount based on the current balance of your account.");
+//			return a.getBalance();
+//		}
+//	}
 
 }

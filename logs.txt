@@ -193,3 +193,10 @@
 2020-08-15 17:20:03 INFO  AccountController:22 - Retrieving all accounts
 2020-08-15 17:20:21 INFO  AccountController:22 - Retrieving all accounts
 2020-08-15 17:20:36 INFO  AccountController:22 - Retrieving all accounts
+2020-08-15 17:43:04 INFO  UserController:30 - finding a user with id 1
+2020-08-15 17:43:15 INFO  UserController:20 - Retrieving user accounts
+2020-08-15 17:43:22 INFO  UserController:20 - Retrieving user accounts
+2020-08-15 17:43:36 INFO  AccountController:33 - finding account with id 1
+2020-08-15 17:48:28 INFO  UserController:30 - finding a user with id 1
+2020-08-15 17:48:35 INFO  UserController:20 - Retrieving user accounts
+2020-08-15 17:48:42 INFO  UserController:20 - Retrieving user accounts
