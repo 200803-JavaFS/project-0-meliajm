@@ -165,6 +165,7 @@ public class ConsoleUtil {
 	
 	private void viewAllUserAccounts(User us) {
 		System.out.println("You are viewing all of your accounts.");
+		// actually print out here hehe
 		
 	}
 
@@ -237,13 +238,13 @@ public class ConsoleUtil {
 			switch(resp) {
 			case "p":
 				System.out.println("The account status will be pending.");
-				Account acc = new Account(a.getAccountID(),a.getBalance(), 1, a.getAccountType(), a.getUser());
+				Account acc = new Account(a.getAccountID(), a.getBalance(), 1, a.getAccountType(), a.getUser());
 				ac.updateAccount(acc);
 				loginUser();
 				break;
 			case "o":
 				System.out.println("The account status will be open.");
-				Account acco = new Account(a.getAccountID(),a.getBalance(), 2, a.getAccountType(), a.getUser());
+				Account acco = new Account(a.getAccountID(), a.getBalance(), 2, a.getAccountType(), a.getUser());
 				ac.updateAccount(acco);
 				loginUser();
 				break;

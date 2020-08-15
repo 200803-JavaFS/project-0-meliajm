@@ -35,16 +35,11 @@ public class AccountDAO implements IAccountDAO {
 						result.getInt("status_of_account"),
 						result.getString("account_type"),
 						null);
-				// should be 0 instead of null?
 				if (result.getInt("user_id_fk")!=0) {
 					a.setUser(uDao.findByID(result.getInt("user_id_fk")));
 				}
 				list.add(a);
-//				a.setAccountID(result.getInt("account_id"));
-//				a.setAccountType(result.getString("account_type"));
-//				a.setBalance(result.getDouble("balance"));
-//				a.setStatusOfAccount(result.getInt("account_type"));
-//				list.add(a);
+
 			}
 			return list;
 					
@@ -54,7 +49,7 @@ public class AccountDAO implements IAccountDAO {
 		}
 		return null;
 	}
-// /////////// come back to this
+
 	@Override
 	public Account findByID(int id) {
 		try (Connection conn = ConnectionUtility.getConnection()) {
@@ -123,7 +118,6 @@ public class AccountDAO implements IAccountDAO {
 			PreparedStatement statement = conn.prepareStatement(sql);
 
 			int index = 0;
-			statement.setInt(++index, a.getAccountID());
 			statement.setDouble(++index, a.getBalance());
 			statement.setInt(++index, a.getStatusOfAccount());
 			statement.setString(++index, a.getAccountType());
