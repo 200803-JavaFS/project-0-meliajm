@@ -1,5 +1,6 @@
 package com.revature.utils;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -143,7 +144,7 @@ public class ConsoleUtil {
 	}
 	
 	private void menuBasic(User us) {
-		System.out.println("What do you want to do? Open account (o), View account (v)");
+		System.out.println("What do you want to do? Open account (o), View accounts (v)");
 		String ans = scan.nextLine();
 		ans = ans.toLowerCase();
 		
@@ -152,7 +153,7 @@ public class ConsoleUtil {
 			openAccount(us);
 			break;
 		case "v":
-			viewAccount(us);
+			viewAllUserAccounts(us);
 			break;
 		default:
 			System.out.println("System error.");
@@ -162,6 +163,11 @@ public class ConsoleUtil {
 		// approve account?	
 	}
 	
+	private void viewAllUserAccounts(User us) {
+		System.out.println("You are viewing all of your accounts.");
+		
+	}
+
 	private void openAccount(User us) {
 		System.out.println("You are opening an account.");
 		System.out.println("Do you want to open a CHECKINGS (c) or SAVINGS (s)?");
@@ -171,29 +177,94 @@ public class ConsoleUtil {
 		
 		switch(accountType) {
 		case "c":
-			a = new Account(0.00, 1, "CHECKINGS", us);
+			a = new Account(0.00, 1, "CHECKING", us);
 			ac.insertAccount(a);
+			viewAccount(us, a);
 			break;
 		case "s":
 			a = new Account(0.00, 1, "SAVINGS", us);
 			ac.insertAccount(a);
+			viewAccount(us, a);
+			break;
+		default:
+			System.out.println("System error.");
+			beginApp();
+			break;
+		}		
+	}
+
+	private void viewAccount(User us, Account a) {
+		System.out.println("You are viewing your account.");
+		System.out.println("Do you want make a Withdraw (w), Transfer (t), Deposit (d), or Exit (e)?");
+		//case
+		String accountType = scan.nextLine();
+		
+//		findall
+//		withdraw, transfer, deposit
+	}
+
+	private void updateUserAccount(User us, Account a) {
+		if (a.getStatusOfAccount()==2) {			
+			System.out.println("You are updating your account balance");
+			String accountType = scan.nextLine();
+		}
+		
+	}
+	
+	private void menuEmploy() {
+		System.out.println("Welcome, employee. You are able to view account and user information.");
+//		System.out.println("What would you like to do?");
+//		System.out.println("View user information (v)");
+//		System.out.println("");
+		System.out.println("Here are all of the account information.");
+		List<Account> list = ac.findAll();
+		for(Account a:list) {
+			System.out.println(a);
+		}
+		System.out.println("Please enter the account id of the account you would like to view.");
+		int id = scan.nextInt();
+		scan.nextLine();
+		Account a = ac.findByID(id);
+		System.out.println("Do you want to change the status of this account? Yes (y), No (n).");
+		String ans = scan.nextLine();
+		ans = ans.toLowerCase();
+		
+		switch(ans) {
+		case "y":
+			System.out.println("What do you want to change the status to be? Pending (p), Open (o).");
+			String resp = scan.nextLine();
+			resp = resp.toLowerCase();
+			switch(resp) {
+			case "p":
+				System.out.println("The account status will be pending.");
+				Account acc = new Account(a.getAccountID(),a.getBalance(), 1, a.getAccountType(), a.getUser());
+				ac.updateAccount(acc);
+				loginUser();
+				break;
+			case "o":
+				System.out.println("The account status will be open.");
+				Account acco = new Account(a.getAccountID(),a.getBalance(), 2, a.getAccountType(), a.getUser());
+				ac.updateAccount(acco);
+				loginUser();
+				break;
+			default:
+				System.out.println("System error.");
+				beginApp();
+				break;
+			}
+			break;
+		case "n":
+			System.out.println("Goodbye employee.");
 			break;
 		default:
 			System.out.println("System error.");
 			beginApp();
 			break;
 		}
+
 		
-		//addAccount
 		
 	}
-
-	private void viewAccount(User us) {
-		System.out.println("You are viewing your accounts.");
-//		findall
-//		withdraw, transfer, deposit
-	}
-
 	
 
 	private void menuAdmin() {
@@ -201,10 +272,7 @@ public class ConsoleUtil {
 		
 	}
 
-	private void menuEmploy() {
-		// TODO Auto-generated method stub
-		
-	}
+	
 
 	
 

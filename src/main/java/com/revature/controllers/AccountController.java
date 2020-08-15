@@ -29,7 +29,7 @@ public class AccountController {
 		return list;
 	}
 	
-	public Account findById(int id) {
+	public Account findByID(int id) {
 		log.info("finding account with id " +id);
 		return dao.findByID(id);
 	}
@@ -45,6 +45,7 @@ public class AccountController {
 	public boolean insertAccount(Account a) {
 		if (a.getUser() != null) {
 			List<User> list = uDao.findAll();
+			log.info("list in insert account: "+ list);
 			boolean b = false;
 			for (User u: list) {
 				if (u.equals(a.getUser())) {

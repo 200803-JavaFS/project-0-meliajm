@@ -52,11 +52,15 @@ public class User implements Serializable {
 		return username;
 	}
 	
+//	public void setUsername(String username) {
+//		if (username.equals("")) {} 
+//		else {			
+//			this.username = username;
+//		}
+//	}
+	
 	public void setUsername(String username) {
-		if (username.equals("")) {} 
-		else {			
-			this.username = username;
-		}
+		this.username = username;
 	}
 
 	public int getType() {
@@ -71,11 +75,15 @@ public class User implements Serializable {
 		return password;
 	}
 
-	public void setPassword(String password) {
-		if (password.equals("")) {} 
-		else {			
-			this.password = password;
-		}
+//	public void setPassword(String password) {
+//		if (password.equals("")) {} 
+//		else {			
+//			this.password = password;
+//		}
+//	}
+	
+	public void setPassword(String password) {		
+		this.password = password;
 	}
 
 	public String getFirstName() {

@@ -15,7 +15,6 @@ public class UserDAO implements IUserDAO {
 	
 	@Override
 	public List<User> findAll() {
-		
 		try(Connection conn = ConnectionUtility.getConnection()) {
 			String sql = "SELECT * FROM users;";
 			Statement statement = conn.createStatement();
@@ -33,6 +32,7 @@ public class UserDAO implements IUserDAO {
 				list.add(u);
 				
 			}
+			return list;
 		} catch(SQLException e) {
 			e.printStackTrace();
 		}

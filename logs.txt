@@ -43,3 +43,19 @@
 2020-08-14 21:55:47 INFO  UserController:25 - finding a user with id 1
 2020-08-14 21:56:35 INFO  UserController:25 - finding a user with id 1
 2020-08-14 22:21:48 INFO  UserController:25 - finding a user with id 1
+2020-08-15 09:11:25 INFO  UserController:25 - finding a user with id 1
+2020-08-15 09:12:00 INFO  AccountController:48 - list in insert account: null
+2020-08-15 09:16:59 INFO  UserController:25 - finding a user with id 1
+2020-08-15 09:17:11 INFO  AccountController:48 - list in insert account: null
+2020-08-15 09:20:23 INFO  UserController:25 - finding a user with id 1
+2020-08-15 09:20:36 INFO  AccountController:48 - list in insert account: [User [userID=1, username=Captain, password=p, type=1, firstName=El Capitain, lastName=Miller], User [userID=2, username=Jimbo, password=p, type=2, firstName=James, lastName=Peacock], User [userID=0, username=oliviaraymond, password=p, type=1, firstName=Olivia, lastName=Raymond], User [userID=3, username=lizlemon, password=p, type=1, firstName=liz, lastName=lemon], User [userID=4, username=blue, password=p, type=3, firstName=blue, lastName=jeans]]
+2020-08-15 09:20:36 INFO  AccountController:56 - Adding account: Account [accountID=0, balance=0.0, statusOfAccount=1, accountType=CHECKINGS, user=User [userID=1, username=Captain, password=p, type=1, firstName=El Capitain, lastName=Miller]]
+2020-08-15 09:22:00 INFO  UserController:25 - finding a user with id 1
+2020-08-15 09:22:15 INFO  AccountController:48 - list in insert account: [User [userID=1, username=Captain, password=p, type=1, firstName=El Capitain, lastName=Miller], User [userID=2, username=Jimbo, password=p, type=2, firstName=James, lastName=Peacock], User [userID=0, username=oliviaraymond, password=p, type=1, firstName=Olivia, lastName=Raymond], User [userID=3, username=lizlemon, password=p, type=1, firstName=liz, lastName=lemon], User [userID=4, username=blue, password=p, type=3, firstName=blue, lastName=jeans]]
+2020-08-15 09:22:15 INFO  AccountController:56 - Adding account: Account [accountID=0, balance=0.0, statusOfAccount=1, accountType=CHECKING, user=User [userID=1, username=Captain, password=p, type=1, firstName=El Capitain, lastName=Miller]]
+2020-08-15 09:52:08 INFO  UserController:25 - finding a user with id 2
+2020-08-15 09:52:12 INFO  UserController:20 - Retrieving all users
+2020-08-15 09:52:33 INFO  UserController:25 - finding a user with id 1
+2020-08-15 09:54:55 INFO  UserController:25 - finding a user with id 2
+2020-08-15 09:54:59 INFO  UserController:20 - Retrieving all users
+2020-08-15 09:55:14 INFO  UserController:25 - finding a user with id 0
