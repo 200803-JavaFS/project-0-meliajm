@@ -61,3 +61,86 @@ ways to break
  1. null or empty fields 
  2. cannot over-withdraw
  3. cannot add negative numbers
+ 
+ 
+ 	private void answerSwitch(String answer) {
+		answer = answer.toLowerCase();
+		switch (answer) {
+			case "all":
+				getAllUsers();
+				break;
+			case "exit":
+				System.out.println("Goodbye.");
+				break;
+			case "one":
+				getOneUser();
+				break;
+			case "add":
+				addUser();
+				break;
+			default:
+				System.out.println("You have entered an incorrect value. Try again.");
+				beginApp();
+				break;
+		}
+	}
+	
+	private void addUser() {
+//		System.out.println("What is your username?");
+//		String username = scan.nextLine();
+//		System.out.println("What is your password");
+//		String password = scan.nextLine();
+//		System.out.println("What is your first name");
+//		String firstName = scan.nextLine();
+//		System.out.println("What is your last name");
+//		String lastName = scan.nextLine();
+//		System.out.println("What is your user type? Basic (B), Employee (E), Admin (A)");
+//		String type = scan.nextLine();
+//		System.out.println("Do you have an account? Yes? No?");
+////		String password = scan.nextLine();
+//		Account a = null;
+//		if (scan.nextLine().toLowerCase().equals("yes")) {
+//			a = findAccount();
+//		}
+//		User u = new User(username, password, type, firstName, lastName, a);
+//		if (uc.insertUser(u)) {
+//			System.out.println("You were added to the database");
+//			beginApp();
+//		} else {
+//			System.out.println("Please try again");
+//			beginApp();
+//		}
+				
+	}
+
+//	private Account findAccount() {
+//		System.out.println("Do you have an account already in the database? Yes? No?");
+//		String res = scan.nextLine();
+//		Account a = null;
+//		if (res.toLowerCase().equals("no")) {
+//			a = makeAccount();
+//		} else {
+//			uc.
+//		}
+//		return null;
+//	}
+
+	
+
+	private void getOneUser() {
+		System.out.println("What is the id of the user you would like to see?");
+		int i = scan.nextInt();
+		scan.nextLine();
+		User u = uc.findByID(i);
+		System.out.println("Your user is: "+u);
+		beginApp();
+	}
+
+	private void getAllUsers() {
+		List<User> list = uc.findAll();
+		System.out.println("Here are all users in the database");
+		for (User u:list) {
+			System.out.println(u);
+		}
+		beginApp();
+	}
