@@ -399,12 +399,17 @@ public class ConsoleUtil {
 //			Account aB = ac.findByID(idB);
 			adminUpdateAccount();
 			break;
+		case "e":
+			System.out.println("Goodbye admin.");
+			break;
 		default:
 			System.out.println("System error.");
 			menuAdmin();
 			break;
 		}
 	}
+	
+	
 	
 	private void adminUpdateAccount() {
 			System.out.println("Which account would you update?");
@@ -422,7 +427,8 @@ public class ConsoleUtil {
 					scan.nextLine();
 					a = new Account(a.getAccountID(), a.getBalance() - amountW, a.getStatusOfAccount(), a.getAccountType(), a.getUser());
 					ac.updateAccount(a);
-					viewAllUserAccounts(a.getUser());
+					System.out.println(a);
+					menuAdmin();
 					break;
 				case "t":
 					System.out.println("What is the amount you want to transfer?");
@@ -440,7 +446,8 @@ public class ConsoleUtil {
 						ac.updateAccount(a);
 						accountT = new Account(accountT.getAccountID(), accountT.getBalance() + amountT, accountT.getStatusOfAccount(), accountT.getAccountType(), accountT.getUser());
 						ac.updateAccount(accountT);
-						viewAllUserAccounts(a.getUser());
+						System.out.println(a);
+						menuAdmin();
 					} else {
 						System.out.println("That's not an account available account");
 						viewAccountsEmAdmin();
@@ -452,7 +459,8 @@ public class ConsoleUtil {
 					scan.nextLine();
 					a = new Account(a.getAccountID(), a.getBalance() + amountD, a.getStatusOfAccount(), a.getAccountType(), a.getUser());
 					ac.updateAccount(a);
-					viewAllUserAccounts(a.getUser());
+					System.out.println(a);
+					menuAdmin();
 					break;
 				case "e":
 					System.out.println("Goodbye admin.");
