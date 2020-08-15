@@ -7,6 +7,7 @@ import org.apache.logging.log4j.Logger;
 
 import com.revature.daos.IUserDAO;
 import com.revature.daos.UserDAO;
+import com.revature.models.Account;
 import com.revature.models.User;
 
 public class UserController {
@@ -15,6 +16,10 @@ public class UserController {
 	
 	private static final Logger log = LogManager.getLogger(UserController.class);
 
+	public List<Account> findUserAccounts(User u) {
+		log.info("Retrieving all users");
+		return dao.findUserAccounts(u);
+	}
 	
 	public List<User> findAll() {
 		log.info("Retrieving all users");

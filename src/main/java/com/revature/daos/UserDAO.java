@@ -8,10 +8,52 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.revature.models.Account;
 import com.revature.models.User;
 import com.revature.utils.ConnectionUtility;
 
 public class UserDAO implements IUserDAO {
+	
+	public List<Account> findUserAccounts(User u) {
+		try(Connection conn = ConnectionUtility.getConnection()) {
+			String sql = "SELECT * FROM accounts WHERE user_id_fk ="+u.getUserID()+";";
+			Statement statement = conn.createStatement();
+			List<Account> list = new ArrayList<>();
+			ResultSet result = statement.executeQuery(sql);
+			
+			while (result.next()) {
+				Account a = new Account(
+						result.getInt("account_id"),
+						result.getDouble("balance"),
+						result.getInt("status_of_account"),
+						result.getString("account_type"),
+						null);
+				if (result.getInt("user_id_fk")!=0) {
+					a.setUser(this.findByID(result.getInt("user_id_fk")));
+				}
+				list.add(a);
+
+			}
+			return list;
+			
+//			while(result.next()) {
+//				Account a = new Account();
+//				a.setAccountID(result.getInt("account_id")); 
+//				a.setBalance(result.getDouble("balance"));
+//				a.setStatusOfAccount(result.getInt("status_of_account"));
+//				a.setAccountType(result.getString("account_type"));
+//				a.setUser(result.getInt("user_id_fk"));
+//				list.add(a);
+//				
+//			}
+//			return list;
+			
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+		
+	}
 	
 	@Override
 	public List<User> findAll() {

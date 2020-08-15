@@ -86,14 +86,17 @@ public class ConsoleUtil {
 			case "b":
 				u = new User(username, pass, 1, firstName, lastName);
 				uc.insertUser(u);
+				menuBasic(u);
 				break;
 			case "e":
 				u = new User(username, pass, 2, firstName, lastName);
 				uc.insertUser(u);
+				menuBasic(u);
 				break;
 			case "a":
 				u = new User(username, pass, 3, firstName, lastName);
 				uc.insertUser(u);
+				menuBasic(u);
 				break;
 			default:
 				System.out.println("You have entered an incorrect value. Try again.");
@@ -160,13 +163,18 @@ public class ConsoleUtil {
 			beginApp();
 			break;
 		}
-		// approve account?	
 	}
 	
 	private void viewAllUserAccounts(User us) {
 		System.out.println("You are viewing all of your accounts.");
-		// actually print out here hehe
-		
+		List<Account> list = uc.findUserAccounts(us);
+		for(Account a:list) {
+			System.out.println(a);
+			// see if this works
+			// user can view her accounts
+			// then pick one account
+			// then update that account
+		}		
 	}
 
 	private void openAccount(User us) {
@@ -240,13 +248,13 @@ public class ConsoleUtil {
 				System.out.println("The account status will be pending.");
 				Account acc = new Account(a.getAccountID(), a.getBalance(), 1, a.getAccountType(), a.getUser());
 				ac.updateAccount(acc);
-				loginUser();
+				System.out.println("Please log back in to continue, employee.");
 				break;
 			case "o":
 				System.out.println("The account status will be open.");
 				Account acco = new Account(a.getAccountID(), a.getBalance(), 2, a.getAccountType(), a.getUser());
 				ac.updateAccount(acco);
-				loginUser();
+				System.out.println("Please log back in to continue, employee.");
 				break;
 			default:
 				System.out.println("System error.");
@@ -255,16 +263,13 @@ public class ConsoleUtil {
 			}
 			break;
 		case "n":
-			System.out.println("Goodbye employee.");
+			System.out.println("Goodbye, employee.");
 			break;
 		default:
 			System.out.println("System error.");
 			beginApp();
 			break;
-		}
-
-		
-		
+		}	
 	}
 	
 
