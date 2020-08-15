@@ -164,12 +164,13 @@ public class ConsoleUtil {
 	}
 	
 	private void viewAllUserAccounts(User us) {
+//		test driver again
 		System.out.println("You are viewing all of your accounts.");
 		List<Account> list = uc.findUserAccounts(us);
 		for(Account a:list) {
 			System.out.println(a);
-			updateUserAccount(us);
 		}		
+		updateUserAccount(us);
 	}
 
 	private void openAccount(User us) {
@@ -183,12 +184,12 @@ public class ConsoleUtil {
 		case "c":
 			a = new Account(0.00, 1, "CHECKING", us);
 			ac.insertAccount(a);
-			viewAccount(us, a);
+			viewAllUserAccounts(us);
 			break;
 		case "s":
 			a = new Account(0.00, 1, "SAVINGS", us);
 			ac.insertAccount(a);
-			viewAccount(us, a);
+			viewAllUserAccounts(us);
 			break;
 		default:
 			System.out.println("System error.");
@@ -197,29 +198,20 @@ public class ConsoleUtil {
 		}		
 	}
 
-	private void viewAccount(User us, Account a) {
-		System.out.println("You are viewing your account.");
-		System.out.println("Do you want make a Withdraw (w), Transfer (t), Deposit (d), or Exit (e)?");
-		//case
-		String accountType = scan.nextLine();
-		
-//		findall
-//		withdraw, transfer, deposit
-	}
+	
 
 	private void updateUserAccount(User us) {
 		System.out.println("Which of your accounts would you like to access? Please enter the account id.");
 		int id = scan.nextInt();
 		scan.nextLine();
 		Account uAcc = ac.findByID(id);
-//		Account a = null;
 		if (uAcc.getStatusOfAccount()==2) {			
 			System.out.println("You are updating your account balance");
-			System.out.println("Do you want make a WITHDRAW (w), TRANSFER (t), or DEPOSIT (d)?");
+			System.out.println("Do you want make a WITHDRAW (w), TRANSFER (t), or DEPOSIT (d), or Exit (e)?");
 			String resp = scan.nextLine();
 			resp = resp.toLowerCase();
 			System.out.println("What is the amount you want to " + resp + "?");
-			int amount = scan.nextInt();
+			double amount = scan.nextDouble();
 			scan.nextLine();
 			switch(resp) {
 			case "w":
@@ -231,14 +223,19 @@ public class ConsoleUtil {
 				System.out.println("What is the account id you want to transfer to?");
 				int accountIDToTranfersTo = scan.nextInt();
 				scan.nextLine();
-				Account accountToTransferTo = ac.findByID(accountIDToTranfersTo);
-				if (accountToTransferTo.getStatusOfAccount()==2 && accountToTransferTo != null) {
+				Account accountT = ac.findByID(accountIDToTranfersTo);
+				System.out.println("accountToTransferTo"+ accountT.getStatusOfAccount());
+				System.out.println("accountToTransferTo"+ accountT);
+				if (accountT.getStatusOfAccount()==2 && accountT != null) {
 					
 					uAcc = new Account(uAcc.getAccountID(), uAcc.getBalance() - amount, uAcc.getStatusOfAccount(), uAcc.getAccountType(), us);
 					ac.updateAccount(uAcc);
+					accountT = new Account(accountT.getAccountID(), accountT.getBalance() + amount, accountT.getStatusOfAccount(), accountT.getAccountType(), accountT.getUser());
+					ac.updateAccount(accountT);
 					viewAllUserAccounts(us);
 				} else {
 					System.out.println("That's not an account available account");
+					viewAllUserAccounts(us);
 				}
 				break;
 			case "d":
@@ -246,12 +243,18 @@ public class ConsoleUtil {
 				ac.updateAccount(uAcc);
 				viewAllUserAccounts(us);
 				break;
+			case "e":
+				System.out.println("Goodbye " + us.getFirstName());
+				break;
 			default:
 				System.out.println("System error.");
 				beginApp();
 				break;
 			}
-		}	
+		} else {
+			System.out.println("You cannot access this account because the status is not open");
+			beginApp();
+		}
 	}
 	
 	private void menuEmploy() {
