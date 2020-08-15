@@ -1,6 +1,6 @@
 package com.revature.utils;
 
-import java.util.ArrayList;
+//import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -8,44 +8,26 @@ import com.revature.controllers.AccountController;
 import com.revature.controllers.UserController;
 import com.revature.models.Account;
 import com.revature.models.User;
-import com.revature.daos.UserDAO;
-import com.revature.daos.AccountDAO;
+
 //add try catch
 // pass in arguments instead of having nested switches or if-else statements
+// add validations for empty strings, etc.
+// if i send users back to begin app and someone logs in again as a different user will this cause problems? seems fine here
+
 
 public class ConsoleUtil {
 	
 	private static final Scanner scan = new Scanner(System.in);
 	private AccountController ac = new AccountController();
 	private UserController uc = new UserController();
-	private UserDAO ud = new UserDAO();
-	private AccountDAO ad = new AccountDAO();
+
 
 	public void beginApp() {
 		// admin employee basic user have different flows
 		System.out.println("Welcome to the Bank of Dog");
-		
 		System.out.println("Do you want to signup (s), login (l), or exit(e)?");
 		String signupOrLogin = scan.nextLine();
 		signupOrLoginSwitch(signupOrLogin);
-		
-//		System.out.println();
-//
-//		System.out.println("What would you like to do?");
-//		System.out.println("ALL to see all users");
-//		System.out.println("ONE to see one user");
-//		System.out.println("D to make a deposit");
-//		System.out.println("W to make a withdraw");
-//		System.out.println("T to make a transfer");
-//
-//
-//
-//
-//		System.out.println("EXIT to exit app");
-//
-//
-//		String answer = scan.nextLine();
-//		answerSwitch(answer);
 	}
 
 	private void signupOrLoginSwitch(String signupOrLogin) {
@@ -68,7 +50,6 @@ public class ConsoleUtil {
 	}
 
 	private void signupUser() {
-		// add validations for empty strings, etc.
 		System.out.println("Please enter a username you'd like to use.");
 		String username = scan.nextLine();
 		System.out.println("Please enter a password.");
@@ -85,17 +66,17 @@ public class ConsoleUtil {
 			case "b":
 				u = new User(username, pass, 1, firstName, lastName);
 				uc.insertUser(u);
-				menuBasic(u);
+				System.out.println("Please login now to use this app user.");
 				break;
 			case "e":
 				u = new User(username, pass, 2, firstName, lastName);
 				uc.insertUser(u);
-				menuBasic(u);
+				System.out.println("Please login now to use this app employee.");
 				break;
 			case "a":
 				u = new User(username, pass, 3, firstName, lastName);
 				uc.insertUser(u);
-				menuBasic(u);
+				System.out.println("Please login now to use this app admin.");
 				break;
 			default:
 				System.out.println("You have entered an incorrect value. Try again.");
@@ -158,13 +139,12 @@ public class ConsoleUtil {
 			break;
 		default:
 			System.out.println("System error.");
-			beginApp();
+			loginUser();
 			break;
 		}
 	}
 	
 	private void viewAllUserAccounts(User us) {
-//		test driver again
 		System.out.println("You are viewing all of your accounts.");
 		List<Account> list = uc.findUserAccounts(us);
 		for(Account a:list) {
@@ -193,67 +173,75 @@ public class ConsoleUtil {
 			break;
 		default:
 			System.out.println("System error.");
-			beginApp();
+			loginUser();
 			break;
 		}		
 	}
-
 	
-
+	// basic user menu 
 	private void updateUserAccount(User us) {
-		System.out.println("Which of your accounts would you like to access? Please enter the account id.");
-		int id = scan.nextInt();
-		scan.nextLine();
-		Account uAcc = ac.findByID(id);
-		if (uAcc.getStatusOfAccount()==2) {			
-			System.out.println("You are updating your account balance");
-			System.out.println("Do you want make a WITHDRAW (w), TRANSFER (t), or DEPOSIT (d), or Exit (e)?");
-			String resp = scan.nextLine();
-			resp = resp.toLowerCase();
-			System.out.println("What is the amount you want to " + resp + "?");
-			double amount = scan.nextDouble();
+		if (uc.findUserAccounts(us).size() > 0) {
+			System.out.println("Which of your accounts would you like to access? Please enter the account id.");
+			int id = scan.nextInt();
 			scan.nextLine();
-			switch(resp) {
-			case "w":
-				uAcc = new Account(uAcc.getAccountID(), uAcc.getBalance() - amount, uAcc.getStatusOfAccount(), uAcc.getAccountType(), us);
-				ac.updateAccount(uAcc);
-				viewAllUserAccounts(us);
-				break;
-			case "t":
-				System.out.println("What is the account id you want to transfer to?");
-				int accountIDToTranfersTo = scan.nextInt();
-				scan.nextLine();
-				Account accountT = ac.findByID(accountIDToTranfersTo);
-				System.out.println("accountToTransferTo"+ accountT.getStatusOfAccount());
-				System.out.println("accountToTransferTo"+ accountT);
-				if (accountT.getStatusOfAccount()==2 && accountT != null) {
-					
-					uAcc = new Account(uAcc.getAccountID(), uAcc.getBalance() - amount, uAcc.getStatusOfAccount(), uAcc.getAccountType(), us);
+			Account uAcc = ac.findByID(id);
+			// making sure only a basic user can view her own accounts, cannot view someone else's if not employee or admin
+			if (uAcc.getStatusOfAccount()==2 && us.getUserID()==uAcc.getUser().getUserID()) {			
+				System.out.println("You are updating your account balance");
+				System.out.println("Do you want make a WITHDRAW (w), TRANSFER (t), or DEPOSIT (d), or Exit (e)?");
+				String resp = scan.nextLine();
+				resp = resp.toLowerCase();
+				switch(resp) {
+				case "w":
+					System.out.println("What is the amount you want to " + resp + "?");
+					double amountW = scan.nextDouble();
+					scan.nextLine();
+					uAcc = new Account(uAcc.getAccountID(), uAcc.getBalance() - amountW, uAcc.getStatusOfAccount(), uAcc.getAccountType(), us);
 					ac.updateAccount(uAcc);
-					accountT = new Account(accountT.getAccountID(), accountT.getBalance() + amount, accountT.getStatusOfAccount(), accountT.getAccountType(), accountT.getUser());
-					ac.updateAccount(accountT);
 					viewAllUserAccounts(us);
-				} else {
-					System.out.println("That's not an account available account");
+					break;
+				case "t":
+					System.out.println("What is the amount you want to " + resp + "?");
+					double amountT = scan.nextDouble();
+					scan.nextLine();
+					System.out.println("What is the account id you want to transfer to?");
+					int accountIDToTranfersTo = scan.nextInt();
+					scan.nextLine();
+					Account accountT = ac.findByID(accountIDToTranfersTo);
+					System.out.println("accountToTransferTo"+ accountT.getStatusOfAccount());
+					System.out.println("accountToTransferTo"+ accountT);
+					if (accountT.getStatusOfAccount()==2 && accountT != null) {
+						
+						uAcc = new Account(uAcc.getAccountID(), uAcc.getBalance() - amountT, uAcc.getStatusOfAccount(), uAcc.getAccountType(), us);
+						ac.updateAccount(uAcc);
+						accountT = new Account(accountT.getAccountID(), accountT.getBalance() + amountT, accountT.getStatusOfAccount(), accountT.getAccountType(), accountT.getUser());
+						ac.updateAccount(accountT);
+						viewAllUserAccounts(us);
+					} else {
+						System.out.println("That's not an account available account");
+						viewAllUserAccounts(us);
+					}
+					break;
+				case "d":
+					System.out.println("What is the amount you want to " + resp + "?");
+					double amountD = scan.nextDouble();
+					scan.nextLine();
+					uAcc = new Account(uAcc.getAccountID(), uAcc.getBalance() + amountD, uAcc.getStatusOfAccount(), uAcc.getAccountType(), us);
+					ac.updateAccount(uAcc);
 					viewAllUserAccounts(us);
+					break;
+				case "e":
+					System.out.println("Goodbye " + us.getFirstName());
+					break;
+				default:
+					System.out.println("System error.");
+					beginApp();
+					break;
 				}
-				break;
-			case "d":
-				uAcc = new Account(uAcc.getAccountID(), uAcc.getBalance() + amount, uAcc.getStatusOfAccount(), uAcc.getAccountType(), us);
-				ac.updateAccount(uAcc);
-				viewAllUserAccounts(us);
-				break;
-			case "e":
-				System.out.println("Goodbye " + us.getFirstName());
-				break;
-			default:
-				System.out.println("System error.");
+			} else {
+				System.out.println("You cannot access this account because the status is not open or it is not your account");
 				beginApp();
-				break;
 			}
-		} else {
-			System.out.println("You cannot access this account because the status is not open");
-			beginApp();
 		}
 	}
 	
@@ -264,10 +252,29 @@ public class ConsoleUtil {
 		for(Account a:list) {
 			System.out.println(a);
 		}
-		System.out.println("Please enter the account id of the account you would like to view.");
-		int id = scan.nextInt();
-		scan.nextLine();
-		Account a = ac.findByID(id);
+		employeeViewAccount();
+	}
+	
+	private void employeeViewAccount() {
+		System.out.println("Do you want to view an account? Yes (y), No (n).");
+		String in = scan.nextLine();
+		in = in.toLowerCase();
+		if (in.equals("y")) {
+			System.out.println("Please enter the account id of the account you would like to view.");
+			int id = scan.nextInt();
+			scan.nextLine();
+			Account a = ac.findByID(id);
+			System.out.println(a);
+			employeeChangeStatusOfAccount(a);
+		} else if (in.equals("n")){
+			System.out.println("See ya later employee.");
+		} else {
+			System.out.println("Didn't get that.");
+			menuEmploy();
+		}
+	}
+
+	private void employeeChangeStatusOfAccount(Account a) {
 		System.out.println("Do you want to change the status of this account? Yes (y), No (n).");
 		String ans = scan.nextLine();
 		ans = ans.toLowerCase();
@@ -295,17 +302,16 @@ public class ConsoleUtil {
 				beginApp();
 				break;
 			}
-			break;
 		case "n":
-			System.out.println("Goodbye, employee.");
+			employeeViewAccount();
 			break;
 		default:
 			System.out.println("System error.");
 			beginApp();
 			break;
-		}	
+		}
 	}
-	
+
 	private void employLogoutQ() {
 		System.out.println("Do you want to look another account? Yes (y), No (n).");
 		String rep = scan.nextLine();
@@ -328,13 +334,4 @@ public class ConsoleUtil {
 		// TODO Auto-generated method stub
 		
 	}
-
-	
-
-	
-
-
-	
-	
-
 }

@@ -114,3 +114,44 @@
 2020-08-15 14:45:37 INFO  AccountController:38 - Updating account Account [accountID=5, balance=400.5, statusOfAccount=2, accountType=SAVINGS, user=User [userID=3, username=lizlemon, password=p, type=1, firstName=liz, lastName=lemon]]
 2020-08-15 14:45:40 INFO  UserController:20 - Retrieving all users
 2020-08-15 14:45:53 INFO  AccountController:33 - finding account with id 1
+2020-08-15 15:06:27 INFO  UserController:48 - adding a user: User [userID=0, username=johnwolf, password=p, type=1, firstName=john, lastName=wolf]
+2020-08-15 15:06:47 INFO  UserController:20 - Retrieving all users
+2020-08-15 15:07:07 INFO  AccountController:33 - finding account with id 1
+2020-08-15 15:20:58 INFO  UserController:30 - finding a user with id 6
+2020-08-15 15:21:22 INFO  AccountController:48 - list in insert account: [User [userID=1, username=Captain, password=p, type=1, firstName=El Capitain, lastName=Miller], User [userID=2, username=Jimbo, password=p, type=2, firstName=James, lastName=Peacock], User [userID=0, username=oliviaraymond, password=p, type=1, firstName=Olivia, lastName=Raymond], User [userID=3, username=lizlemon, password=p, type=1, firstName=liz, lastName=lemon], User [userID=4, username=blue, password=p, type=3, firstName=blue, lastName=jeans], User [userID=5, username=sherim, password=p, type=3, firstName=sheri, lastName=michael], User [userID=6, username=johnwolf, password=p, type=1, firstName=john, lastName=wolf]]
+2020-08-15 15:21:22 INFO  AccountController:56 - Adding account: Account [accountID=0, balance=0.0, statusOfAccount=1, accountType=CHECKING, user=User [userID=6, username=johnwolf, password=p, type=1, firstName=john, lastName=wolf]]
+2020-08-15 15:21:23 INFO  UserController:20 - Retrieving user accounts
+2020-08-15 15:21:27 INFO  UserController:20 - Retrieving user accounts
+2020-08-15 15:21:44 INFO  AccountController:33 - finding account with id 6
+2020-08-15 15:22:26 INFO  UserController:30 - finding a user with id 6
+2020-08-15 15:22:33 INFO  UserController:20 - Retrieving user accounts
+2020-08-15 15:22:39 INFO  UserController:20 - Retrieving user accounts
+2020-08-15 15:22:49 INFO  AccountController:33 - finding account with id 6
+2020-08-15 15:23:19 INFO  UserController:30 - finding a user with id 6
+2020-08-15 15:23:29 INFO  UserController:20 - Retrieving user accounts
+2020-08-15 15:23:35 INFO  UserController:20 - Retrieving user accounts
+2020-08-15 15:23:40 INFO  AccountController:33 - finding account with id 1
+2020-08-15 15:35:57 INFO  UserController:30 - finding a user with id 1
+2020-08-15 15:36:21 INFO  UserController:20 - Retrieving user accounts
+2020-08-15 15:36:28 INFO  UserController:20 - Retrieving user accounts
+2020-08-15 15:36:55 INFO  AccountController:33 - finding account with id 2
+2020-08-15 15:37:24 INFO  UserController:30 - finding a user with id 2
+2020-08-15 15:37:28 INFO  AccountController:22 - Retrieving all accounts
+2020-08-15 15:37:50 INFO  AccountController:33 - finding account with id 1
+2020-08-15 15:38:10 INFO  AccountController:33 - finding account with id 2
+2020-08-15 15:49:59 INFO  UserController:30 - finding a user with id 1
+2020-08-15 15:50:08 INFO  UserController:20 - Retrieving user accounts
+2020-08-15 15:50:14 INFO  UserController:20 - Retrieving user accounts
+2020-08-15 15:50:22 INFO  AccountController:33 - finding account with id 1
+2020-08-15 15:50:43 INFO  AccountController:38 - Updating account Account [accountID=1, balance=1300.49, statusOfAccount=2, accountType=SAVINGS, user=User [userID=1, username=Captain, password=p, type=1, firstName=El Capitain, lastName=Miller]]
+2020-08-15 15:50:46 INFO  UserController:20 - Retrieving user accounts
+2020-08-15 15:50:58 INFO  UserController:20 - Retrieving user accounts
+2020-08-15 15:51:05 INFO  AccountController:33 - finding account with id 2
+2020-08-15 15:52:15 INFO  UserController:30 - finding a user with id 3
+2020-08-15 15:52:25 INFO  UserController:20 - Retrieving user accounts
+2020-08-15 15:52:31 INFO  UserController:20 - Retrieving user accounts
+2020-08-15 15:52:46 INFO  AccountController:33 - finding account with id 1
+2020-08-15 15:53:27 INFO  UserController:30 - finding a user with id 2
+2020-08-15 15:53:31 INFO  AccountController:22 - Retrieving all accounts
+2020-08-15 15:53:53 INFO  AccountController:33 - finding account with id 6
+2020-08-15 15:54:07 INFO  AccountController:38 - Updating account Account [accountID=6, balance=0.0, statusOfAccount=2, accountType=CHECKING, user=User [userID=6, username=johnwolf, password=p, type=1, firstName=john, lastName=wolf]]

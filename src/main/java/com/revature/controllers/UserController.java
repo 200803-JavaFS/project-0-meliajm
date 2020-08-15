@@ -17,7 +17,7 @@ public class UserController {
 	private static final Logger log = LogManager.getLogger(UserController.class);
 
 	public List<Account> findUserAccounts(User u) {
-		log.info("Retrieving all users");
+		log.info("Retrieving user accounts");
 		return dao.findUserAccounts(u);
 	}
 	
