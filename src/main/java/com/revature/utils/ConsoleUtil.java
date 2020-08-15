@@ -187,48 +187,57 @@ public class ConsoleUtil {
 			Account uAcc = ac.findByID(id);
 			// making sure only a basic user can view her own accounts, cannot view someone else's if not employee or admin
 			if (uAcc.getStatusOfAccount()==2 && us.getUserID()==uAcc.getUser().getUserID()) {			
+				double currentBalance = uAcc.getBalance();
 				System.out.println("You are updating your account balance");
 				System.out.println("Do you want make a WITHDRAW (w), TRANSFER (t), or DEPOSIT (d), or Exit (e)?");
 				String resp = scan.nextLine();
 				resp = resp.toLowerCase();
 				switch(resp) {
 				case "w":
-					System.out.println("What is the amount you want to " + resp + "?");
+					System.out.println("What is the amount you want to withdraw?");
 					double amountW = scan.nextDouble();
 					scan.nextLine();
-					uAcc = new Account(uAcc.getAccountID(), uAcc.getBalance() - amountW, uAcc.getStatusOfAccount(), uAcc.getAccountType(), us);
-					ac.updateAccount(uAcc);
-					viewAllUserAccounts(us);
+					if (currentBalance>=amountW && amountW > 0) {						
+						uAcc = new Account(uAcc.getAccountID(), uAcc.getBalance() - amountW, uAcc.getStatusOfAccount(), uAcc.getAccountType(), us);
+						ac.updateAccount(uAcc);
+						viewAllUserAccounts(us);
+					} else {
+						System.out.println("You cannot over-withdraw or withdraw a non-positive number.");
+					}
 					break;
 				case "t":
-					System.out.println("What is the amount you want to " + resp + "?");
+					System.out.println("What is the amount you want to transfer?");
 					double amountT = scan.nextDouble();
 					scan.nextLine();
 					System.out.println("What is the account id you want to transfer to?");
 					int accountIDToTranfersTo = scan.nextInt();
 					scan.nextLine();
 					Account accountT = ac.findByID(accountIDToTranfersTo);
-					System.out.println("accountToTransferTo"+ accountT.getStatusOfAccount());
-					System.out.println("accountToTransferTo"+ accountT);
-					if (accountT.getStatusOfAccount()==2 && accountT != null) {
-						
-						uAcc = new Account(uAcc.getAccountID(), uAcc.getBalance() - amountT, uAcc.getStatusOfAccount(), uAcc.getAccountType(), us);
-						ac.updateAccount(uAcc);
-						accountT = new Account(accountT.getAccountID(), accountT.getBalance() + amountT, accountT.getStatusOfAccount(), accountT.getAccountType(), accountT.getUser());
-						ac.updateAccount(accountT);
-						viewAllUserAccounts(us);
-					} else {
-						System.out.println("That's not an account available account");
-						viewAllUserAccounts(us);
+					if (currentBalance>=amountT && amountT > 0) {
+						if (accountT.getStatusOfAccount()==2 && accountT != null) {
+							uAcc = new Account(uAcc.getAccountID(), uAcc.getBalance() - amountT, uAcc.getStatusOfAccount(), uAcc.getAccountType(), us);
+							ac.updateAccount(uAcc);
+							accountT = new Account(accountT.getAccountID(), accountT.getBalance() + amountT, accountT.getStatusOfAccount(), accountT.getAccountType(), accountT.getUser());
+							ac.updateAccount(accountT);
+							viewAllUserAccounts(us);
+						} else {
+							System.out.println("That's not an account available account");
+							viewAllUserAccounts(us);
+						}
 					}
 					break;
 				case "d":
-					System.out.println("What is the amount you want to " + resp + "?");
+					System.out.println("What is the amount you want to deposit?");
 					double amountD = scan.nextDouble();
 					scan.nextLine();
-					uAcc = new Account(uAcc.getAccountID(), uAcc.getBalance() + amountD, uAcc.getStatusOfAccount(), uAcc.getAccountType(), us);
-					ac.updateAccount(uAcc);
-					viewAllUserAccounts(us);
+					// could add limit to how much can be deposited at a time
+					if (amountD > 0) {
+						uAcc = new Account(uAcc.getAccountID(), uAcc.getBalance() + amountD, uAcc.getStatusOfAccount(), uAcc.getAccountType(), us);
+						ac.updateAccount(uAcc);
+						viewAllUserAccounts(us);
+					} else {
+						System.out.println("What do you mean you want to deposit a negative amount?");
+					}
 					break;
 				case "e":
 					System.out.println("Goodbye " + us.getFirstName());
