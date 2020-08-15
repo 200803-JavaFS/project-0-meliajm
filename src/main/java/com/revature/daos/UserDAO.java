@@ -62,22 +62,46 @@ public class UserDAO implements IUserDAO {
 		}
 		return null;
 	}
+	
+	@Override
+	public User findByUsername(String username) {
+		try (Connection conn = ConnectionUtility.getConnection()) {
+			String sql = "SELECT * FROM users WHERE username = ?;";			
+			PreparedStatement statement = conn.prepareStatement(sql);
+			statement.setString(1, username);
+			ResultSet result = statement.executeQuery();
+			if (result.next()) {
+				User u = new User();
+				u.setUserID(result.getInt("user_id")); 
+				u.setUsername(result.getString("username"));
+				u.setPassword(result.getString("user_password"));
+				u.setType(result.getInt("user_type"));
+				u.setFirstName(result.getString("first_name"));
+				u.setLastName(result.getString("last_name"));
+				return u;
+			} else {
+				return null;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
 
 	@Override
 	public boolean addUser(User u) {
 		try (Connection conn = ConnectionUtility.getConnection()) {
-			String sql = "INSERT INTO users (user_id, username, user_password, user_type, first_name, last_name)"
-					+ "VALUES (?, ?, ?, ?, ?, ?);";
+			String sql = "INSERT INTO users (username, user_password, user_type, first_name, last_name)"
+					+ "VALUES (?, ?, ?, ?, ?);";
 			PreparedStatement statement = conn.prepareStatement(sql);
 			
 			int index = 0;
-			statement.setInt(++index, u.getUserID());
 			statement.setString(++index, u.getUsername());
 			statement.setString(++index, u.getPassword());
 			statement.setInt(++index, u.getType());
 			statement.setString(++index, u.getFirstName());
 			statement.setString(++index, u.getLastName());
-			
 			statement.execute();
 			return true;
 		} catch (SQLException e) {

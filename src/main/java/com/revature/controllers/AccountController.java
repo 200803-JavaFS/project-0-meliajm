@@ -24,7 +24,7 @@ public class AccountController {
 		
 		// what goes here?
 		for (Account a: list) {
-			System.out.println("account :" + a);;
+			System.out.println("account :" + a);
 		}
 		return list;
 	}

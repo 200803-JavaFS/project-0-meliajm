@@ -9,3 +9,17 @@
 2020-08-12 13:23:22 INFO  AccountDAO:15 - I am in the DAO getting account number 1
 2020-08-12 13:23:22 INFO  Driver:26 - we have found acount: Account [balance=" + balance + ", type=" + type + "]
 2020-08-12 13:23:22 INFO  Driver:27 - the end of app
+2020-08-14 14:35:13 INFO  UserController:43 - adding a user: User [userID=0, username=oliviaraymond, password=p, type=1, firstName=Olivia, lastName=Raymond]
+2020-08-14 14:49:19 INFO  UserController:30 - finding a user with username Captain
+2020-08-14 14:51:19 INFO  UserController:30 - finding a user with username Captain
+2020-08-14 14:55:44 INFO  UserController:30 - finding a user with username Captain
+2020-08-14 14:58:49 INFO  UserController:30 - finding a user with username Captain
+2020-08-14 15:01:23 INFO  UserController:30 - finding a user with username Captain
+2020-08-14 15:03:12 INFO  UserController:30 - finding a user with username Captain
+2020-08-14 15:03:39 INFO  UserController:30 - finding a user with username Jimbo
+2020-08-14 15:04:40 INFO  UserController:30 - finding a user with username oliviaraymond
+2020-08-14 15:05:55 INFO  UserController:43 - adding a user: User [userID=0, username=cap, password=p, type=2, firstName=f, lastName=l]
+2020-08-14 15:07:34 INFO  UserController:30 - finding a user with username Jimbo
+2020-08-14 19:34:03 INFO  UserController:43 - adding a user: User [userID=0, username=lizamarie, password=p, type=1, firstName=lm, lastName=o]
+2020-08-14 20:00:07 INFO  UserController:43 - adding a user: User [userID=0, username=lizlemon, password=p, type=1, firstName=liz, lastName=lemon]
+2020-08-14 20:02:25 INFO  UserController:43 - adding a user: User [userID=0, username=lizlemon, password=p, type=1, firstName=liz, lastName=lemon]

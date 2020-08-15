@@ -87,12 +87,11 @@ public class AccountDAO implements IAccountDAO {
 	public boolean addAccount(Account a) {
 		
 		try(Connection conn = ConnectionUtility.getConnection()) {
-			String sql = "INSERT INTO accounts (account_id, balance, status_of_account, account_type, user_id_fk)"
-					+ "VALUES (?, ?, ?, ?, ?);";
+			String sql = "INSERT INTO accounts (balance, status_of_account, account_type, user_id_fk)"
+					+ "VALUES (?, ?, ?, ?);";
 			PreparedStatement statement = conn.prepareStatement(sql);
 			
 			int index = 0;
-			statement.setInt(++index, a.getAccountID());
 			statement.setDouble(++index, a.getBalance());
 			statement.setInt(++index, a.getStatusOfAccount());
 			statement.setString(++index, a.getAccountType());

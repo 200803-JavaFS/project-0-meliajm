@@ -26,6 +26,11 @@ public class UserController {
 		return dao.findByID(id);
 	}
 	
+	public User findByUsername(String username) {
+		log.info("finding a user with username " +username);
+		return dao.findByUsername(username);
+	}
+	
 	public boolean updateUser(User u) {
 		log.info("updating a user: " + u);
 		if (dao.updateUser(u)) {
