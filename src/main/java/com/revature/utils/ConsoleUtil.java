@@ -11,6 +11,7 @@ import com.revature.models.User;
 import com.revature.daos.UserDAO;
 import com.revature.daos.AccountDAO;
 //add try catch
+// pass in arguments instead of having nested switches or if-else statements
 
 public class ConsoleUtil {
 	
@@ -63,9 +64,7 @@ public class ConsoleUtil {
 			System.out.println("You have entered an incorrect value. Try again.");
 			beginApp();
 			break;
-
 		}
-		
 	}
 
 	private void signupUser() {
@@ -150,7 +149,6 @@ public class ConsoleUtil {
 		System.out.println("What do you want to do? Open account (o), View accounts (v)");
 		String ans = scan.nextLine();
 		ans = ans.toLowerCase();
-		
 		switch(ans) {
 		case "o":
 			openAccount(us);
@@ -170,10 +168,7 @@ public class ConsoleUtil {
 		List<Account> list = uc.findUserAccounts(us);
 		for(Account a:list) {
 			System.out.println(a);
-			// see if this works
-			// user can view her accounts
-			// then pick one account
-			// then update that account
+			updateUserAccount(us);
 		}		
 	}
 
@@ -212,12 +207,45 @@ public class ConsoleUtil {
 //		withdraw, transfer, deposit
 	}
 
-	private void updateUserAccount(User us, Account a) {
-		if (a.getStatusOfAccount()==2) {			
+	private void updateUserAccount(User us) {
+		System.out.println("Which of your accounts would you like to access? Please enter the account id.");
+		int id = scan.nextInt();
+		scan.nextLine();
+		Account uAcc = ac.findByID(id);
+//		Account a = null;
+		if (uAcc.getStatusOfAccount()==2) {			
 			System.out.println("You are updating your account balance");
-			String accountType = scan.nextLine();
-		}
-		
+			System.out.println("Do you want make a WITHDRAW (w), TRANSFER (t), or DEPOSIT (d)?");
+			String resp = scan.nextLine();
+			resp = resp.toLowerCase();
+			System.out.println("What is the amount you want to " + resp + "?");
+			int amount = scan.nextInt();
+			scan.nextLine();
+			switch(resp) {
+			case "w":
+				uAcc = new Account(uAcc.getAccountID(), uAcc.getBalance() - amount, uAcc.getStatusOfAccount(), uAcc.getAccountType(), us);
+				ac.updateAccount(uAcc);
+				viewAllUserAccounts(us);
+				break;
+			case "t":
+				System.out.println("What is the account id you want to transfer to?");
+				int accountIDToTranferTo = scan.nextInt();
+				scan.nextLine();
+				uAcc = new Account(uAcc.getAccountID(), uAcc.getBalance() - amount, uAcc.getStatusOfAccount(), uAcc.getAccountType(), us);
+				// question here, transfer to another account, is withdraw to deposit
+				viewAllUserAccounts(us);
+				break;
+			case "d":
+				uAcc = new Account(uAcc.getAccountID(), uAcc.getBalance() + amount, uAcc.getStatusOfAccount(), uAcc.getAccountType(), us);
+				ac.updateAccount(uAcc);
+				viewAllUserAccounts(us);
+				break;
+			default:
+				System.out.println("System error.");
+				beginApp();
+				break;
+			}
+		}	
 	}
 	
 	private void menuEmploy() {
@@ -248,13 +276,13 @@ public class ConsoleUtil {
 				System.out.println("The account status will be pending.");
 				Account acc = new Account(a.getAccountID(), a.getBalance(), 1, a.getAccountType(), a.getUser());
 				ac.updateAccount(acc);
-				System.out.println("Please log back in to continue, employee.");
+				employLogoutQ();
 				break;
 			case "o":
 				System.out.println("The account status will be open.");
 				Account acco = new Account(a.getAccountID(), a.getBalance(), 2, a.getAccountType(), a.getUser());
 				ac.updateAccount(acco);
-				System.out.println("Please log back in to continue, employee.");
+				employLogoutQ();
 				break;
 			default:
 				System.out.println("System error.");
@@ -272,6 +300,23 @@ public class ConsoleUtil {
 		}	
 	}
 	
+	private void employLogoutQ() {
+		System.out.println("Do you want to look another account? Yes (y), No (n).");
+		String rep = scan.nextLine();
+		rep = rep.toLowerCase();
+		switch(rep) {
+		case "y":
+			menuEmploy();
+			break;
+		case "n":
+			System.out.println("Goodbye, employee.");
+			break;
+		default:
+			System.out.println("System error.");
+			beginApp();
+			break;
+		}
+	}
 
 	private void menuAdmin() {
 		// TODO Auto-generated method stub

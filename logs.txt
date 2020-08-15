@@ -82,3 +82,10 @@
 2020-08-15 11:51:14 INFO  AccountController:22 - Retrieving all accounts
 2020-08-15 11:51:31 INFO  AccountController:33 - finding account with id 1
 2020-08-15 11:51:59 INFO  AccountController:38 - Updating account Account [accountID=1, balance=0.0, statusOfAccount=2, accountType=SAVINGS, user=User [userID=1, username=Captain, password=p, type=1, firstName=El Capitain, lastName=Miller]]
+2020-08-15 13:22:08 INFO  UserController:30 - finding a user with id 2
+2020-08-15 13:22:13 INFO  AccountController:22 - Retrieving all accounts
+2020-08-15 13:22:21 INFO  AccountController:33 - finding account with id 1
+2020-08-15 13:22:35 INFO  AccountController:38 - Updating account Account [accountID=1, balance=0.0, statusOfAccount=2, accountType=SAVINGS, user=User [userID=1, username=Captain, password=p, type=1, firstName=El Capitain, lastName=Miller]]
+2020-08-15 13:22:46 INFO  AccountController:22 - Retrieving all accounts
+2020-08-15 13:22:57 INFO  AccountController:33 - finding account with id 2
+2020-08-15 13:23:30 INFO  AccountController:38 - Updating account Account [accountID=2, balance=100000.0, statusOfAccount=2, accountType=CHECKING, user=User [userID=2, username=Jimbo, password=p, type=2, firstName=James, lastName=Peacock]]
