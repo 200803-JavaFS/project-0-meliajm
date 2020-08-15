@@ -248,11 +248,19 @@ public class ConsoleUtil {
 	private void menuEmploy() {
 		System.out.println("Welcome, employee. You are able to view account and user information.");
 		System.out.println("Here are all of the account information.");
+		viewAccountsEmAdmin();
+//		List<Account> list = ac.findAll();
+//		for(Account a:list) {
+//			System.out.println(a);
+//		}
+		employeeViewAccount();
+	}
+	
+	private void viewAccountsEmAdmin() {
 		List<Account> list = ac.findAll();
 		for(Account a:list) {
 			System.out.println(a);
 		}
-		employeeViewAccount();
 	}
 	
 	private void employeeViewAccount() {
@@ -281,35 +289,41 @@ public class ConsoleUtil {
 		
 		switch(ans) {
 		case "y":
-			System.out.println("What do you want to change the status to be? Pending (p), Open (o).");
-			String resp = scan.nextLine();
-			resp = resp.toLowerCase();
-			switch(resp) {
-			case "p":
-				System.out.println("The account status will be pending.");
-				Account acc = new Account(a.getAccountID(), a.getBalance(), 1, a.getAccountType(), a.getUser());
-				ac.updateAccount(acc);
-				employLogoutQ();
-				break;
-			case "o":
-				System.out.println("The account status will be open.");
-				Account acco = new Account(a.getAccountID(), a.getBalance(), 2, a.getAccountType(), a.getUser());
-				ac.updateAccount(acco);
-				employLogoutQ();
-				break;
-			default:
-				System.out.println("System error.");
-				beginApp();
-				break;
-			}
+			updateStatusEm(a);
 		case "n":
-			employeeViewAccount();
+//			employeeViewAccount();
+			System.out.println("Bye, employee");
 			break;
 		default:
 			System.out.println("System error.");
-			beginApp();
+			menuEmploy();
 			break;
 		}
+	}
+
+	private void updateStatusEm(Account a) {
+		System.out.println("What do you want to change the status to be? Pending (p), Open (o).");
+		String resp = scan.nextLine();
+		resp = resp.toLowerCase();
+		switch(resp) {
+		case "p":
+			System.out.println("The account status will be pending.");
+			Account acc = new Account(a.getAccountID(), a.getBalance(), 1, a.getAccountType(), a.getUser());
+			ac.updateAccount(acc);
+			employLogoutQ();
+			break;
+		case "o":
+			System.out.println("The account status will be open.");
+			Account acco = new Account(a.getAccountID(), a.getBalance(), 2, a.getAccountType(), a.getUser());
+			ac.updateAccount(acco);
+			employLogoutQ();
+			break;
+		default:
+			System.out.println("System error.");
+			menuEmploy();
+			break;
+		}
+		
 	}
 
 	private void employLogoutQ() {
@@ -329,9 +343,129 @@ public class ConsoleUtil {
 			break;
 		}
 	}
-
-	private void menuAdmin() {
-		// TODO Auto-generated method stub
+	
+	private void updateStatusAd(Account a) {
+		System.out.println("What do you want to change the status to be? Pending (p), Open (o), Cancel (c).");
+		String resp = scan.nextLine();
+		resp = resp.toLowerCase();
+		switch(resp) {
+		case "p":
+			System.out.println("The account status will be pending.");
+			Account acc = new Account(a.getAccountID(), a.getBalance(), 1, a.getAccountType(), a.getUser());
+			ac.updateAccount(acc);
+			employLogoutQ();
+			break;
+		case "o":
+			System.out.println("The account status will be open.");
+			Account acco = new Account(a.getAccountID(), a.getBalance(), 2, a.getAccountType(), a.getUser());
+			ac.updateAccount(acco);
+			employLogoutQ();
+			break;
+		case "c":
+			System.out.println("The account status will be closed.");
+			Account accC = new Account(a.getAccountID(), a.getBalance(), 3, a.getAccountType(), a.getUser());
+			ac.updateAccount(accC);
+			employLogoutQ();
+			break;
+		default:
+			System.out.println("System error.");
+			menuAdmin();
+			break;
+		}
 		
 	}
+
+	private void menuAdmin() {
+		// admin can do what employee does and basic user
+		System.out.println("Welcome admin, what would you like to do?");
+		System.out.println("Here are all of the accounts");
+		viewAccountsEmAdmin();
+		System.out.println("Update account Status including cancelling (s), Update account Balance (b), or Exit (e)");
+		String rep = scan.nextLine();
+		rep = rep.toLowerCase();
+		switch(rep) {
+		case "s":
+			System.out.println("Which account do you want to update the status of?");
+			int id = scan.nextInt();
+			scan.nextLine();
+			Account a = ac.findByID(id);
+			updateStatusAd(a);
+			break;
+		case "b":
+			System.out.println("You are going to update the account balance of a user, admin.");
+//			System.out.println("Which account do you want to update the balance of?");
+//			int idB = scan.nextInt();
+//			scan.nextLine();
+//			Account aB = ac.findByID(idB);
+			adminUpdateAccount();
+			break;
+		default:
+			System.out.println("System error.");
+			menuAdmin();
+			break;
+		}
+	}
+	
+	private void adminUpdateAccount() {
+			System.out.println("Which account would you update?");
+			int id = scan.nextInt();
+			scan.nextLine();
+			Account a = ac.findByID(id);
+			if (a.getStatusOfAccount()==2) {			
+				System.out.println("Do you want make a WITHDRAW (w), TRANSFER (t), or DEPOSIT (d), or Exit (e)?");
+				String resp = scan.nextLine();
+				resp = resp.toLowerCase();
+				switch(resp) {
+				case "w":
+					System.out.println("What is the amount you want to withdraw?");
+					double amountW = scan.nextDouble();
+					scan.nextLine();
+					a = new Account(a.getAccountID(), a.getBalance() - amountW, a.getStatusOfAccount(), a.getAccountType(), a.getUser());
+					ac.updateAccount(a);
+					viewAllUserAccounts(a.getUser());
+					break;
+				case "t":
+					System.out.println("What is the amount you want to transfer?");
+					double amountT = scan.nextDouble();
+					scan.nextLine();
+					System.out.println("What is the account id you want to transfer to?");
+					int accountIDToTranfersTo = scan.nextInt();
+					scan.nextLine();
+					Account accountT = ac.findByID(accountIDToTranfersTo);
+					System.out.println("accountToTransferTo"+ accountT.getStatusOfAccount());
+					System.out.println("accountToTransferTo"+ accountT);
+					if (accountT.getStatusOfAccount()==2 && accountT != null) {
+						
+						a = new Account(a.getAccountID(), a.getBalance() - amountT, a.getStatusOfAccount(), a.getAccountType(), a.getUser());
+						ac.updateAccount(a);
+						accountT = new Account(accountT.getAccountID(), accountT.getBalance() + amountT, accountT.getStatusOfAccount(), accountT.getAccountType(), accountT.getUser());
+						ac.updateAccount(accountT);
+						viewAllUserAccounts(a.getUser());
+					} else {
+						System.out.println("That's not an account available account");
+						viewAccountsEmAdmin();
+					}
+					break;
+				case "d":
+					System.out.println("What is the amount you want to deposit?");
+					double amountD = scan.nextDouble();
+					scan.nextLine();
+					a = new Account(a.getAccountID(), a.getBalance() + amountD, a.getStatusOfAccount(), a.getAccountType(), a.getUser());
+					ac.updateAccount(a);
+					viewAllUserAccounts(a.getUser());
+					break;
+				case "e":
+					System.out.println("Goodbye admin.");
+					break;
+				default:
+					System.out.println("System error.");
+					menuAdmin();
+					break;
+				}
+			} else {
+				System.out.println("You cannot access this account because the status is not open.");
+				menuAdmin();
+			}
+	}
+	
 }
