@@ -62,6 +62,78 @@ ways to break
  2. cannot over-withdraw
  3. cannot add negative numbers
  
+ package com.revature;
+
+import java.util.InputMismatchException;
+import java.util.List;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import com.revature.controllers.AccountController;
+import com.revature.daos.AccountDAO;
+import com.revature.models.Account;
+import com.revature.utils.ConsoleUtil;
+
+public class Driver {
+	
+	private static AccountDAO dao = new AccountDAO();
+	
+	ConsoleUtil cons = new ConsoleUtil();
+	
+	private void run() {			
+		try {			
+			cons.beginApp();
+		} catch (InputMismatchException e) {
+//			e.printStackTrace();
+			System.out.println("you caught an exception");
+			run();
+		}
+	
+	public static void main(String[] args) {
+//		run();
+		cons.beginApp();
+		
+		
+	}
+//		List<Account> list = dao.findAll();
+//		
+//		for (Account a: list) {
+//			System.out.println(a);
+//		}
+//		
+//		Account a = new Account(0.00, "Savings")
+	}
+	
+//	private static final Logger log = LogManager.getLogger(Driver.class);
+//	
+//	private static AccountController ac = new AccountController();
+//
+//	public static void main(String[] args) {
+//		log.info("The application has started");
+//		try {
+//			recur();
+//		} catch(Error e) {
+//			Log.error("Oh no we encountered an error");
+//		}
+//		Account a = ac.findAccountById(1);
+//		log.info("we have found acount: "+a);
+//		log.info("the end of app");
+//	}
+//	public Driver() {		                                   
+//	}
+	
+//	public static void recur() {
+//		recur();
+//	}
+	
+
+}
+ 
+ 
+ 
+ // pass in arguments instead of having nested switches or if-else statements
+ 
  
  	private void answerSwitch(String answer) {
 		answer = answer.toLowerCase();
@@ -84,6 +156,8 @@ ways to break
 				break;
 		}
 	}
+	
+	
 	
 	private void addUser() {
 //		System.out.println("What is your username?");

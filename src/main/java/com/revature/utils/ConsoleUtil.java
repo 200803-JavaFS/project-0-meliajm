@@ -1,5 +1,6 @@
 package com.revature.utils;
 
+import java.util.InputMismatchException;
 //import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -9,8 +10,8 @@ import com.revature.controllers.UserController;
 import com.revature.models.Account;
 import com.revature.models.User;
 
-//add try catch
-// pass in arguments instead of having nested switches or if-else statements
+//add try catch, catch exception for invalid input of switch statements
+// catch exceptions for too long usernames or other fields in database
 // add validations for empty strings, etc.
 // if i send users back to begin app and someone logs in again as a different user will this cause problems? seems fine here
 
@@ -37,7 +38,12 @@ public class ConsoleUtil {
 			signupUser();
 			break;
 		case "l":
-			loginUser();
+			try {
+				loginUser();
+			} catch (InputMismatchException e) {
+				System.out.println("catching InputMismatchException here");
+				beginApp();
+			}
 			break;
 		case "e":
 			System.out.println("Goodbye.");
@@ -62,26 +68,31 @@ public class ConsoleUtil {
 		String lastName = scan.nextLine();
 		userType = userType.toLowerCase();
 		User u = null;
-		switch (userType) {
-			case "b":
-				u = new User(username, pass, 1, firstName, lastName);
-				uc.insertUser(u);
-				System.out.println("Please login now to use this app user.");
-				break;
-			case "e":
-				u = new User(username, pass, 2, firstName, lastName);
-				uc.insertUser(u);
-				System.out.println("Please login now to use this app employee.");
-				break;
-			case "a":
-				u = new User(username, pass, 3, firstName, lastName);
-				uc.insertUser(u);
-				System.out.println("Please login now to use this app admin.");
-				break;
-			default:
-				System.out.println("You have entered an incorrect value. Try again.");
-				beginApp();
-				break;
+		if (username.equals("") || pass.equals("") || userType.equals("") || firstName.equals("") || lastName.equals("")) { 
+			System.out.println("Not valid entries to use this app as a new user.");
+			beginApp();
+		} else {
+			switch (userType) {
+				case "b":
+					u = new User(username, pass, 1, firstName, lastName);
+					uc.insertUser(u);
+					System.out.println("Please login now to use this app user.");
+					break;
+				case "e":
+					u = new User(username, pass, 2, firstName, lastName);
+					uc.insertUser(u);
+					System.out.println("Please login now to use this app employee.");
+					break;
+				case "a":
+					u = new User(username, pass, 3, firstName, lastName);
+					uc.insertUser(u);
+					System.out.println("Please login now to use this app admin.");
+					break;
+				default:
+					System.out.println("You have entered an incorrect value. Try again.");
+					beginApp();
+					break;
+			}
 		}
 	}
 
@@ -278,7 +289,7 @@ public class ConsoleUtil {
 	}
 	
 	private void employeeViewAccount() {
-		System.out.println("Do you want to view an account? Yes (y), No (n).");
+		System.out.println("Do you want to view an account? Yes (y), No (n) means exit.");
 		String in = scan.nextLine();
 		in = in.toLowerCase();
 		if (in.equals("y")) {
@@ -300,12 +311,10 @@ public class ConsoleUtil {
 		System.out.println("Do you want to change the status of this account? Yes (y), No (n).");
 		String ans = scan.nextLine();
 		ans = ans.toLowerCase();
-		
 		switch(ans) {
 		case "y":
 			updateStatusEm(a);
 		case "n":
-//			employeeViewAccount();
 			System.out.println("Bye, employee");
 			break;
 		default:
@@ -353,7 +362,7 @@ public class ConsoleUtil {
 			break;
 		default:
 			System.out.println("System error.");
-			beginApp();
+			menuEmploy();
 			break;
 		}
 	}
@@ -390,7 +399,6 @@ public class ConsoleUtil {
 	}
 
 	private void menuAdmin() {
-		// admin can do what employee does and basic user
 		System.out.println("Welcome admin, what would you like to do?");
 		System.out.println("Here are all of the accounts");
 		viewAccountsEmAdmin();
@@ -407,10 +415,6 @@ public class ConsoleUtil {
 			break;
 		case "b":
 			System.out.println("You are going to update the account balance of a user, admin.");
-//			System.out.println("Which account do you want to update the balance of?");
-//			int idB = scan.nextInt();
-//			scan.nextLine();
-//			Account aB = ac.findByID(idB);
 			adminUpdateAccount();
 			break;
 		case "e":
@@ -422,8 +426,6 @@ public class ConsoleUtil {
 			break;
 		}
 	}
-	
-	
 	
 	private void adminUpdateAccount() {
 			System.out.println("Which account would you update?");

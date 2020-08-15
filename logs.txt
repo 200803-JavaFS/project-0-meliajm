@@ -200,3 +200,17 @@
 2020-08-15 17:48:28 INFO  UserController:30 - finding a user with id 1
 2020-08-15 17:48:35 INFO  UserController:20 - Retrieving user accounts
 2020-08-15 17:48:42 INFO  UserController:20 - Retrieving user accounts
+2020-08-15 17:56:58 INFO  AccountController:33 - finding account with id 1
+2020-08-15 17:57:48 INFO  AccountController:33 - finding account with id 2
+2020-08-15 17:57:54 INFO  UserController:20 - Retrieving user accounts
+2020-08-15 17:58:08 INFO  AccountController:33 - finding account with id 4
+2020-08-15 17:58:19 INFO  UserController:20 - Retrieving user accounts
+2020-08-15 17:58:25 INFO  UserController:20 - Retrieving user accounts
+2020-08-15 18:26:57 INFO  UserController:30 - finding a user with id 1
+2020-08-15 18:27:03 INFO  UserController:20 - Retrieving user accounts
+2020-08-15 18:27:09 INFO  UserController:20 - Retrieving user accounts
+2020-08-15 18:28:47 INFO  AccountController:33 - finding account with id 1
+2020-08-15 18:34:58 INFO  UserController:30 - finding a user with id 1
+2020-08-15 18:35:05 INFO  UserController:20 - Retrieving user accounts
+2020-08-15 18:35:11 INFO  UserController:20 - Retrieving user accounts
+2020-08-15 18:35:16 INFO  AccountController:33 - finding account with id 1
