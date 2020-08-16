@@ -19,7 +19,7 @@ public interface IUserDAO {
 
 	public List<Account> findUserAccounts(User u);
 	
-//	public boolean deleteUser(int id);
+	public boolean deleteUser(int id);
 	
 
 }

@@ -175,25 +175,19 @@ public class UserDAO implements IUserDAO {
 		}
 		return false;
 	}
-
+	
+	@Override
+	public boolean deleteUser(int user_id) {
+		try (Connection conn = ConnectionUtility.getConnection()) {
+			String sql = "DELETE FROM users WHERE user_id =" + user_id + ";";
+			Statement statement = conn.createStatement();
+			statement.execute(sql);
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
 	
 	
-		
-
-
 }
-
-//result.getInt("user_id"), 
-//result.getString("username"),
-//result.getString("user_password"),
-//result.getInt("user_type"),
-//result.getString("first_name"),
-//result.getString("last_name")
-//
-//User u = new User(result.getInt("user_id"), 
-//		result.getString("username"),
-//		result.getString("user_password"),
-//		result.getInt("user_type"),
-//		result.getString("first_name"),
-//		result.getString("last_name"),
-//		null);

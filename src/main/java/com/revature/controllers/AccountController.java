@@ -72,9 +72,13 @@ public class AccountController {
 		return false;
 	}
 	
-//	public boolean removeAccount(int id) {
-//		log.info(", message, p0, p1, p2, p3, p4, p5, p6, p7);
-//	}
+	public boolean removeAccount(int id) {
+		log.info("deleting account with id: "+ id);
+		if (dao.deleteAccount(id)) {
+			return true;
+		}
+		return false;
+	}
 	
 //	public static double deposit(Account a, double amount) {
 //		if (amount <= 0) {

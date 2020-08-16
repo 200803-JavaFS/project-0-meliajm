@@ -53,14 +53,14 @@ public class UserController {
 		return false;
 	}
 	
-//	public boolean removeUser(int id) {
-//		log.info("deleting a user: " + u);
-//
-//		if (dao.deleteUser(id)) {
-//			return true;
-//		}
-//		return false;
-//	}
+	public boolean removeUser(int id) {
+		log.info("deleting a user with id: " + id);
+
+		if (dao.deleteUser(id)) {
+			return true;
+		}
+		return false;
+	}
 	
 	
 	

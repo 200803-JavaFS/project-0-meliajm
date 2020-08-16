@@ -146,12 +146,12 @@ public class AccountDAO implements IAccountDAO {
 					+ "INSERT INTO users (user_id, username, user_password, user_type, first_name, last_name)"
 					+ "VALUES (?, ?, ?, ?, ?, ?);"
 					+ "INSERT INTO accounts (balance, status_of_account, account_type, user_id_fk)"
-					+ "VALUES (?, ?, ?, ?, ?);"
+					+ "VALUES (?, ?, ?, ?);"
 					+ "COMMIT;";
-			
 			PreparedStatement statement = conn.prepareStatement(sql);
 			
 			User u = a.getUser();
+			System.out.println("user in addAccountWithUser:" + u);
 			
 			int index = 0;
 			statement.setInt(++index, u.getUserID());
@@ -172,7 +172,19 @@ public class AccountDAO implements IAccountDAO {
 		}
 		return false;
 	}
-
 	
-
+	@Override
+	public boolean deleteAccount(int account_id) {
+		try (Connection conn = ConnectionUtility.getConnection()) {
+			String sql = "DELETE FROM users WHERE account_id =" + account_id + ";";
+			Statement statement = conn.createStatement();
+			statement.execute(sql);
+			
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
 }
