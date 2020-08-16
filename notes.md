@@ -62,6 +62,17 @@ ways to break
  2. cannot over-withdraw
  3. cannot add negative numbers
  
+ //
+//	public static Account a;
+//	public static double depos;
+//	public static double z;
+//	public static double neg;
+//	public static double over;
+//	public static double withd;
+//	public static double tr;
+//	public static String accNam;
+//	public static double result;
+ 
  package com.revature;
 
 import java.util.InputMismatchException;
