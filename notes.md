@@ -1,9 +1,14 @@
 questions:
-which methods should be static in models?
-how are associations made in Java?
-how to delete a User or Account in Java?
-how does a user login?
-do we need to unit test our setters and getters?
+singleton design pattern for loggers? how to use that? do we need to?
+how to do stored procedure? what does it look like?
+prepared statements not needed with ints only when user inputs strings
+because that could be drop table;
+
+which methods should be static in models? just the serial
+how are associations made in Java? Account has user field
+how to delete a User or Account in Java? use DAO and delete from database
+how does a user login? find user and match password
+do we need to unit test our setters and getters? no
 
 
 

@@ -26,5 +26,25 @@ insert into accounts (balance, status_of_account, account_type, user_id_fk)
 	(0.56, 1, 'CHECKING', null);
 ;
 
+DELETE FROM accounts WHERE account_id = 10;
 
+DELETE FROM accounts WHERE account_id = 11;
+
+DELETE FROM accounts WHERE account_id = 12;
+
+DELETE FROM users WHERE user_id = 99;
+-------------------------------------------
+
+CREATE OR REPLACE FUNCTION trigger_set_time() RETURNS TRIGGER 
+AS $$
+BEGIN
+	NEW.update_at = NOW();
+	RETURN NEW; 
+END;
+$$ LANGUAGE plpgsql; 
+
+ALTER TABLE accounts ADD COLUMN update_at TIMESTAMP;
+
+CREATE TRIGGER set_time BEFORE UPDATE ON accounts FOR EACH ROW
+EXECUTE PROCEDURE trigger_set_time();
 	

@@ -254,3 +254,17 @@
 2020-08-15 21:46:53 INFO  UserController:30 - finding a user with id 99
 2020-08-15 21:46:59 INFO  AccountController:48 - list in insert account: [User [userID=1, username=Captain, password=p, type=1, firstName=El Capitain, lastName=Miller], User [userID=2, username=Jimbo, password=p, type=2, firstName=James, lastName=Peacock], User [userID=0, username=oliviaraymond, password=p, type=1, firstName=Olivia, lastName=Raymond], User [userID=3, username=lizlemon, password=p, type=1, firstName=liz, lastName=lemon], User [userID=4, username=blue, password=p, type=3, firstName=blue, lastName=jeans], User [userID=5, username=sherim, password=p, type=3, firstName=sheri, lastName=michael], User [userID=6, username=johnwolf, password=p, type=1, firstName=john, lastName=wolf], User [userID=99, username=captain, password=p, type=1, firstName=el cap, lastName=miller]]
 2020-08-15 21:46:59 INFO  AccountController:56 - Adding account: Account [accountID=0, balance=0.0, statusOfAccount=2, accountType=CHECKING, user=User [userID=99, username=captain, password=p, type=1, firstName=el cap, lastName=miller]]
+2020-08-16 15:12:26 INFO  UserController:30 - finding a user with id 1
+2020-08-16 15:12:34 INFO  UserController:20 - Retrieving user accounts
+2020-08-16 15:12:41 INFO  UserController:20 - Retrieving user accounts
+2020-08-16 15:12:58 INFO  AccountController:33 - finding account with id 1
+2020-08-16 15:13:11 INFO  AccountController:38 - Updating account Account [accountID=1, balance=21320.49, statusOfAccount=2, accountType=SAVINGS, user=User [userID=1, username=Captain, password=p, type=1, firstName=El Capitain, lastName=Miller]]
+2020-08-16 15:13:15 INFO  UserController:20 - Retrieving user accounts
+2020-08-16 15:13:19 INFO  UserController:20 - Retrieving user accounts
+2020-08-16 15:13:28 INFO  AccountController:33 - finding account with id 1
+2020-08-16 15:26:57 INFO  UserController:30 - finding a user with id 1
+2020-08-16 15:27:12 INFO  AccountController:48 - list in insert account: [User [userID=1, username=Captain, password=p, type=1, firstName=El Capitain, lastName=Miller], User [userID=2, username=Jimbo, password=p, type=2, firstName=James, lastName=Peacock], User [userID=0, username=oliviaraymond, password=p, type=1, firstName=Olivia, lastName=Raymond], User [userID=3, username=lizlemon, password=p, type=1, firstName=liz, lastName=lemon], User [userID=4, username=blue, password=p, type=3, firstName=blue, lastName=jeans], User [userID=5, username=sherim, password=p, type=3, firstName=sheri, lastName=michael], User [userID=6, username=johnwolf, password=p, type=1, firstName=john, lastName=wolf], User [userID=99, username=captain, password=p, type=1, firstName=el cap, lastName=miller]]
+2020-08-16 15:27:12 INFO  AccountController:56 - Adding account: Account [accountID=0, balance=0.0, statusOfAccount=1, accountType=CHECKING, user=User [userID=1, username=Captain, password=p, type=1, firstName=El Capitain, lastName=Miller]]
+2020-08-16 15:27:13 INFO  UserController:20 - Retrieving user accounts
+2020-08-16 15:27:19 INFO  UserController:20 - Retrieving user accounts
+2020-08-16 15:27:28 INFO  AccountController:33 - finding account with id 1
