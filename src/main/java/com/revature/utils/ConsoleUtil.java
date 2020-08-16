@@ -160,8 +160,13 @@ public class ConsoleUtil {
 		List<Account> list = uc.findUserAccounts(us);
 		for(Account a:list) {
 			System.out.println(a);
-		}		
-		updateUserAccount(us);
+		}	
+		try {			
+			updateUserAccount(us);
+		} catch (InputMismatchException e) {
+			System.out.println("catching InputMismatchException here");
+			beginApp();
+		}
 	}
 
 	private void openAccount(User us) {
@@ -190,6 +195,7 @@ public class ConsoleUtil {
 	}
 	
 	// basic user menu 
+	// try catch here
 	private void updateUserAccount(User us) {
 		if (uc.findUserAccounts(us).size() > 0) {
 			System.out.println("Which of your accounts would you like to access? Please enter the account id.");
@@ -278,7 +284,12 @@ public class ConsoleUtil {
 //		for(Account a:list) {
 //			System.out.println(a);
 //		}
-		employeeViewAccount();
+		try {
+			employeeViewAccount();
+		} catch (InputMismatchException e) {
+			System.out.println("catching InputMismatchException here");
+			beginApp();
+		}
 	}
 	
 	private void viewAccountsEmAdmin() {
@@ -392,7 +403,13 @@ public class ConsoleUtil {
 			break;
 		default:
 			System.out.println("System error.");
-			menuAdmin();
+			try {			
+				menuAdmin();
+			} catch (InputMismatchException e) {
+				System.out.println("catching InputMismatchException here");
+				beginApp();
+			}
+			
 			break;
 		}
 		
