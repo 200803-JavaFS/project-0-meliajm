@@ -15,6 +15,11 @@ import com.revature.utils.ConnectionUtility;
 public class AccountDAO implements IAccountDAO {
 
 	private IUserDAO uDao = new UserDAO();
+	
+//	@Override
+//	public void addTimestamp() {
+//		
+//	}
 
 
 	@Override

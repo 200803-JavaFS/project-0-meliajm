@@ -100,40 +100,44 @@ public class ConsoleUtil {
 		System.out.println("What is your user id?");
 		int id = scan.nextInt();
 		scan.nextLine();
-		System.out.println("What is your password?");
-		String pass = scan.nextLine();
-		User us = uc.findByID(id);
-		System.out.println("id: "+ id);
-		System.out.println("pass: "+ pass);
-		System.out.println("user password: "+ us.getPassword().equals(pass));
-		if (us!=null) {			
-			if (us.getPassword().equals(pass)) {
-				System.out.println("You are logged in.");
-				System.out.println("user: "+us);
-				System.out.println("user type: "+us.getType());
-				System.out.println("user id: "+us.getUserID());
-				switch(us.getType()) {
-					case 1:
-						menuBasic(us);
-						break;
-					case 2:
-						menuEmploy();
-						break;
-					case 3:
-						menuAdmin();
-						break;
-					default:
-						System.out.println("System error.");
-						beginApp();
-						break;
+		if (Integer.class.isInstance(id)) {
+			System.out.println("What is your password?");
+			String pass = scan.nextLine();
+			User us = uc.findByID(id);
+			System.out.println("id: "+ id);
+			System.out.println("pass: "+ pass);
+			System.out.println("user password: "+ us.getPassword().equals(pass));
+			if (us!=null) {			
+				if (us.getPassword().equals(pass)) {
+					System.out.println("You are logged in.");
+					System.out.println("user: "+us);
+					System.out.println("user type: "+us.getType());
+					System.out.println("user id: "+us.getUserID());
+					switch(us.getType()) {
+						case 1:
+							menuBasic(us);
+							break;
+						case 2:
+							menuEmploy();
+							break;
+						case 3:
+							menuAdmin();
+							break;
+						default:
+							System.out.println("System error.");
+							beginApp();
+							break;
+					}
+				} else {
+					System.out.println("Your password does not match.");
+					beginApp();
 				}
 			} else {
-				System.out.println("Your password does not match.");
+				System.out.println("No user found with that username.");
 				beginApp();
 			}
 		} else {
-			System.out.println("No user found with that username.");
-			beginApp();
+			System.out.println("That's not an integer for a user id.");
 		}
 	}
 	

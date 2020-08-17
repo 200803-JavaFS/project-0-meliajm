@@ -12,4 +12,6 @@ public interface IAccountDAO {
 	public boolean updateAccount(Account a);
 	public boolean addAccountWithUser(Account a);
 	public boolean deleteAccount(int id);
+	
+//	public void addTimestamp();
 }
