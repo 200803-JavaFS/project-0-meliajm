@@ -61,19 +61,6 @@ public class UserController {
 		}
 		return false;
 	}
-	
-	
-	
-	// make login method
-
-//	private UserDAO dao = new UserDAO();
-	// instance of user
-
-//	public User findUserById(int i) {
-//		log.info("logging in user controller");
-//		return dao.findById(i);
-//		
-//	}
 
 }
 

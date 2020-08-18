@@ -36,18 +36,6 @@ public class UserDAO implements IUserDAO {
 			}
 			return list;
 			
-//			while(result.next()) {
-//				Account a = new Account();
-//				a.setAccountID(result.getInt("account_id")); 
-//				a.setBalance(result.getDouble("balance"));
-//				a.setStatusOfAccount(result.getInt("status_of_account"));
-//				a.setAccountType(result.getString("account_type"));
-//				a.setUser(result.getInt("user_id_fk"));
-//				list.add(a);
-//				
-//			}
-//			return list;
-			
 		} catch(SQLException e) {
 			e.printStackTrace();
 		}
@@ -95,7 +83,7 @@ public class UserDAO implements IUserDAO {
 				u.setType(result.getInt("user_type"));
 				u.setFirstName(result.getString("first_name"));
 				u.setLastName(result.getString("last_name"));
-				System.out.println("user in find by id: " + u);
+//				System.out.println("user in find by id: " + u);
 				return u;
 			} else {
 				return null;

@@ -46,5 +46,5 @@ $$ LANGUAGE plpgsql;
 ALTER TABLE accounts ADD COLUMN update_at TIMESTAMP;
 
 CREATE TRIGGER set_time BEFORE UPDATE ON accounts FOR EACH ROW
-EXECUTE PROCEDURE trigger_set_time();
+EXECUTE PROCEDURE trigger_set_time(); 
 	
